@@ -14,11 +14,19 @@ script = ExtResource("1_dajm1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="place_normal_wagon" type="Button" parent="CanvasLayer"]
+[node name="place_resource_wagon" type="Button" parent="CanvasLayer"]
 offset_left = 1.0
 offset_top = 248.0
 offset_right = 109.0
 offset_bottom = 356.0
 icon = ExtResource("1_2fwl4")
 
-[connection signal="pressed" from="CanvasLayer/place_normal_wagon" to="." method="_on_place_normal_wagon_pressed"]
+[node name="place_combat_wagon" type="Button" parent="CanvasLayer"]
+offset_left = 112.0
+offset_top = 250.0
+offset_right = 220.0
+offset_bottom = 358.0
+icon = ExtResource("1_2fwl4")
+
+[connection signal="pressed" from="CanvasLayer/place_resource_wagon" to="." method="_on_place_resource_wagon_pressed"]
+[connection signal="pressed" from="CanvasLayer/place_combat_wagon" to="." method="_on_place_combat_wagon_pressed"]

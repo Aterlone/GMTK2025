@@ -91,6 +91,10 @@ func _physics_process(delta: float) -> void:
 	
 	var grid_index = getGridIndex($BaseTileWhite.global_position)
 	
+	if grid_index.x >= 20:
+		grid_index.x = 19
+	if grid_index.y >= 20:
+		grid_index.y = 19
 	$Label.text = str(get_parent().GRID[grid_index.x][grid_index.y])
 	
 	if grid_index.x >= 20:
@@ -120,4 +124,4 @@ func place_wagon():
 	
 	grid_index = getGridIndex($BaseTileWhite.global_position)
 	get_parent().GRID[grid_index.x][grid_index.y] = "wagon"
-	get_parent().spawnEntity("wagon", grid_index)
+	get_parent().spawnEntity("wagon", grid_index, Globals.place_type)

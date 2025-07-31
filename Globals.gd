@@ -5,11 +5,12 @@ enum place_mode {
 	none
 }
 
-enum place_types {
+enum wagon_types {
 	RESOURCE,
 	COMBAT,
-	BUILDER
+	BUILDER,
+	NONE
 }
 
 @export var place: place_mode = place_mode.none
-@export var place_type: place_types = place_types.RESOURCE
+@export var place_type: wagon_types = wagon_types.NONE

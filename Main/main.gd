@@ -27,7 +27,8 @@ func createGrid():
 	for posX in range(grid_size_X):
 		var column = []
 		for posY in range(grid_size_Y):
-			if randf_range(0.0,1.0) < 0.2:
+			var bonus = abs((posY * posX)-180)/180
+			if randf_range(0.0,1.4-bonus) < 0.2 && ((posX < 6 || posX > 14) || (posY < 6 || posY > 14)):
 				column.append("tree")
 			else:
 				column.append(null)
@@ -43,8 +44,10 @@ func spawnEntities():
 				spawnEntity("tree", Vector2(posX, posY))
 
 
-func spawnEntity(entity_key, grid_position):
+func spawnEntity(entity_key, grid_position, type: Globals.wagon_types=Globals.wagon_types.NONE):
 	var entity = entity_files[entity_key].instantiate()
+	if type != Globals.wagon_types.NONE:
+		entity.set_type(type)
 	
 	var game_position = Vector2.ZERO
 	game_position.x = (grid_position.x + 1) * 32
