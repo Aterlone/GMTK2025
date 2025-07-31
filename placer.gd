@@ -1,5 +1,16 @@
 extends Node2D
 
+var WagonScene := preload("res://Wagons/wagon.tscn")
+var entities: Node
+
+func _ready() -> void:
+	entities = get_node("/root/Main/Entities")
+
+func _input(event):
+	if event.is_action_pressed("place"):
+		var wagon = WagonScene.instantiate()
+		wagon.position = getGridPosition(get_global_mouse_position())
+		entities.add_child(wagon)
 # Snapped grid origin
 func snap_to_grid(target: Vector2) -> Vector2:
 	return Vector2(
@@ -38,10 +49,12 @@ func getGridPosition(target: Vector2) -> Vector2:
 
 	if is_below(target, grid_target, 0.5, 16):
 		grid_target += Vector2(-32, 16)
-	print(grid_target)
+		
 	return grid_target
 
 func _physics_process(delta: float) -> void:
 	$BaseTileWhite.global_position = getGridPosition(get_global_mouse_position())
+	
+	
 	
 	
