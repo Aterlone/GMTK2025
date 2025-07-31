@@ -20,12 +20,13 @@ func _input(event):
 		if event.is_action_pressed("place") and not_taken:
 			var move_entity = placing.get_child(0)
 			placing.remove_child(move_entity)
-			entities.add_child(move_entity)
+			place_wagon()
 			Globals.place = Globals.place_mode.none
 		else:
 			placing.get_child(0).position = getGridPosition(get_global_mouse_position())
 	
 	if event.is_action_pressed("delete"):
+		return
 		var wagons = entities.get_children()
 		for wagon in wagons:
 			if wagon.mouse_over:
@@ -90,6 +91,8 @@ func _physics_process(delta: float) -> void:
 	
 	var grid_index = getGridIndex($BaseTileWhite.global_position)
 	
+	$Label.text = str(get_parent().GRID[grid_index.x][grid_index.y])
+	
 	if grid_index.x >= 20:
 		## our position is off of the grid.
 		return
@@ -106,3 +109,15 @@ func _physics_process(delta: float) -> void:
 		var wagon = WagonScene.instantiate()
 		wagon.position = getGridPosition(get_global_mouse_position())
 		placing.add_child(wagon)
+
+
+func place_wagon():
+	var grid_index = getGridIndex($BaseTileWhite.global_position)
+	
+	if grid_index.x >= 20:
+		## our position is off of the grid.
+		return
+	
+	grid_index = getGridIndex($BaseTileWhite.global_position)
+	get_parent().GRID[grid_index.x][grid_index.y] = "wagon"
+	get_parent().spawnEntity("wagon", grid_index)

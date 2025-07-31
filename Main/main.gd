@@ -4,7 +4,8 @@ var GRID = []
 
 
 var entity_files = {
-	"tree" : load("res://tree.tscn")
+	"tree" : load("res://tree.tscn"),
+	"wagon" : load("res://Wagons/wagon.tscn")
 }
 
 func _ready() -> void:

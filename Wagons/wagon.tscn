@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbs5qeb7qv6p6"]
+[gd_scene load_steps=3 format=3 uid="uid://dbs5qeb7qv6p6"]
 
 [ext_resource type="Script" uid="uid://cewmyk57gjy1j" path="res://Wagons/wagon.gd" id="1_mdkc6"]
+[ext_resource type="Texture2D" uid="uid://dc5u3bq1stf6h" path="res://tree.png" id="2_mdkc6"]
 
 [node name="Wagon" type="Node2D"]
 script = ExtResource("1_mdkc6")
@@ -15,3 +16,8 @@ offset_left = -40.0
 offset_top = -24.0
 offset_right = 32.0
 offset_bottom = 16.0
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(-24, -24)
+rotation = -1.309
+texture = ExtResource("2_mdkc6")
