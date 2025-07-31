@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://xcj10i8f6gyq"]
 
-[ext_resource type="Texture2D" uid="uid://bocy6b737vk14" path="res://Wagons/wagon.png" id="1_2fwl4"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Wagons/wagon.png" id="1_2fwl4"]
 [ext_resource type="Script" uid="uid://nuj4055ncbs1" path="res://UI/ui.gd" id="1_dajm1"]
 
 [node name="Ui" type="Control"]
