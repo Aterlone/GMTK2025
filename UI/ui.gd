@@ -2,8 +2,7 @@ extends Control
 
 
 
-func _process(delta: float) -> void:
-	print(Globals.place)
+#func _process(delta: float) -> void:
 
 func _on_place_normal_wagon_pressed() -> void:
 	if Globals.place == Globals.place_mode.none:

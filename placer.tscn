@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwq8x5mjo7riu"]
 
-[ext_resource type="Texture2D" uid="uid://dqotbmrvqimby" path="res://base_tile_white.png" id="1_di4i5"]
+[ext_resource type="Texture2D" uid="uid://dwsb6rjyfqx5j" path="res://base_tile_white.png" id="1_di4i5"]
 [ext_resource type="Script" uid="uid://u7lw5klaco3f" path="res://placer.gd" id="1_nqqtd"]
 
 [node name="Placer" type="Node2D"]
@@ -8,9 +8,9 @@ script = ExtResource("1_nqqtd")
 
 [node name="BaseTileWhite" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0, 0.419608)
+z_index = 4096
 texture = ExtResource("1_di4i5")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_right = 40.0
 offset_bottom = 23.0
