@@ -9,8 +9,13 @@ func _ready() -> void:
 	placing = get_node("/root/Main/Unplaced_Entity")
 
 func _input(event):
+	var not_taken = true
 	if placing.get_child_count():
-		if event.is_action_pressed("place"):
+		for child in entities.get_children():
+			if child.position == placing.get_child(0).position:
+				not_taken = false
+				break
+		if event.is_action_pressed("place") and not_taken:
 			var move_entity = placing.get_child(0)
 			placing.remove_child(move_entity)
 			entities.add_child(move_entity)
