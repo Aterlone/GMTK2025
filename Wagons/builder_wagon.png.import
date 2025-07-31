@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bocy6b737vk14"
-path="res://.godot/imported/wagon.png-fbe442ef2f632c83cda1dbb100b3ef8b.ctex"
+uid="uid://cgn7mxjonmmf1"
+path="res://.godot/imported/builder_wagon.png-972f90050d50ec81d2841496efb28031.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wagons/wagon.png"
-dest_files=["res://.godot/imported/wagon.png-fbe442ef2f632c83cda1dbb100b3ef8b.ctex"]
+source_file="res://Wagons/builder_wagon.png"
+dest_files=["res://.godot/imported/builder_wagon.png-972f90050d50ec81d2841496efb28031.ctex"]
 
 [params]
 
