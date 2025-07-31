@@ -2,21 +2,25 @@ extends Node2D
 
 var WagonScene := preload("res://Wagons/wagon.tscn")
 var entities: Node
+var placing: Node
 
 func _ready() -> void:
 	entities = get_node("/root/Main/Entities")
+	placing = get_node("/root/Main/Unplaced_Entity")
 
 func _input(event):
-	if event.is_action_pressed("place"):
-		var wagon = WagonScene.instantiate()
-		wagon.position = getGridPosition(get_global_mouse_position())
-		entities.add_child(wagon)
-	
+	if placing.get_child_count():
+		if event.is_action_pressed("place"):
+			var move_entity = placing.get_child(0)
+			placing.remove_child(move_entity)
+			entities.add_child(move_entity)
+			Globals.place = Globals.place_mode.none
+		else:
+			placing.get_child(0).position = getGridPosition(get_global_mouse_position())
 	if event.is_action_pressed("delete"):
 		var wagons = entities.get_children()
 		for wagon in wagons:
 			if wagon.mouse_over:
-				
 				wagon.queue_free()
 		
 # Snapped grid origin
@@ -62,7 +66,7 @@ func getGridPosition(target: Vector2) -> Vector2:
 
 func _physics_process(delta: float) -> void:
 	$BaseTileWhite.global_position = getGridPosition(get_global_mouse_position())
-	
-	
-	
-	
+	if Globals.place == Globals.place_mode.normal_wagon && not placing.get_child_count():
+		var wagon = WagonScene.instantiate()
+		wagon.position = getGridPosition(get_global_mouse_position())
+		placing.add_child(wagon)

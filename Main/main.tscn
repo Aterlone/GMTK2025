@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://cuwkyvbibg2oh"]
+[gd_scene load_steps=5 format=4 uid="uid://cuwkyvbibg2oh"]
 
 [ext_resource type="Script" uid="uid://cumuv6lavmvrt" path="res://Main/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c7fljd5n3rceq" path="res://Tiles/grid_base.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dwq8x5mjo7riu" path="res://placer.tscn" id="3_qvhan"]
+[ext_resource type="PackedScene" uid="uid://xcj10i8f6gyq" path="res://UI/ui.tscn" id="4_eunhr"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -21,3 +22,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAA
 [node name="Placer" parent="." instance=ExtResource("3_qvhan")]
 
 [node name="Entities" type="Node" parent="."]
+
+[node name="Ui" parent="." instance=ExtResource("4_eunhr")]
+
+[node name="Unplaced_Entity" type="Node" parent="."]
