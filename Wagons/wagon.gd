@@ -12,7 +12,8 @@ func set_mouse(overlapping : bool):
 
 
 func _physics_process(delta: float) -> void:
-	if mouse_over:
-		$ColorRect.modulate = Color.GREEN
-	else:
-		$ColorRect.modulate = Color.RED
+	pass
+	#if mouse_over:
+		#$ColorRect.modulate = Color.GREEN
+	#else:
+		#$ColorRect.modulate = Color.RED
