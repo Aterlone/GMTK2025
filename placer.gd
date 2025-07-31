@@ -11,6 +11,14 @@ func _input(event):
 		var wagon = WagonScene.instantiate()
 		wagon.position = getGridPosition(get_global_mouse_position())
 		entities.add_child(wagon)
+	
+	if event.is_action_pressed("delete"):
+		var wagons = entities.get_children()
+		for wagon in wagons:
+			if wagon.mouse_over:
+				
+				wagon.queue_free()
+		
 # Snapped grid origin
 func snap_to_grid(target: Vector2) -> Vector2:
 	return Vector2(
