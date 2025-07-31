@@ -11,5 +11,6 @@ modulate = Color(0, 1, 0, 0.419608)
 texture = ExtResource("1_di4i5")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
