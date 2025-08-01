@@ -78,7 +78,7 @@ func getGridPosition(target: Vector2) -> Vector2:
 		
 	return grid_target
 
-
+# Get grid index values
 func getGridIndex(origin):
 	var grid_coords = origin / 32
 	grid_coords.y = ceil(grid_coords.y)
@@ -91,17 +91,16 @@ func _physics_process(delta: float) -> void:
 	
 	var grid_index = getGridIndex($BaseTileWhite.global_position)
 	
-	if grid_index.x >= 20:
-		grid_index.x = 19
-	if grid_index.y >= 20:
-		grid_index.y = 19
-	$Label.text = str(get_parent().GRID[grid_index.x][grid_index.y])
-	
-	if grid_index.x >= 20:
-		## our position is off of the grid.
-		return
+	# If larger than map set to grid_size-1
+	grid_index.x = max(0, min(grid_index.x, Globals.GRID_WIDTH - 1))
+	grid_index.y = max(0, min(grid_index.y, Globals.GRID_HEIGHT - 1))
 	
 	var grid_value = get_parent().GRID[grid_index.x][grid_index.y]
+
+	# Set type of tile
+	$Label.text = str(grid_value)
+	
+	# Color whether you can place on the tile for the tester.
 	match grid_value:
 		null:
 			$BaseTileWhite.modulate = Color.GREEN
@@ -109,6 +108,7 @@ func _physics_process(delta: float) -> void:
 			$BaseTileWhite.modulate = Color.RED
 	$BaseTileWhite.modulate.a = 0.5
 	
+	# Create Placing Wagon Object
 	if Globals.place == Globals.place_mode.normal_wagon && not placing.get_child_count():
 		var wagon = WagonScene.instantiate()
 		wagon.position = getGridPosition(get_global_mouse_position())

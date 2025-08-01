@@ -19,40 +19,45 @@ func window():
 	get_window().size = size
 	get_window().move_to_center()
 
-
+# Create a grid which can ahve tiles placed on it.
 func createGrid():
-	var grid_size_X = 20
-	var grid_size_Y = 20
+	const CENTER_MIN = 6
+	const CENTER_MAX = 14
 	
-	for posX in range(grid_size_X):
+	for x in range(Globals.GRID_WIDTH):
 		var column = []
-		for posY in range(grid_size_Y):
-			var bonus = abs((posY * posX)-180)/180
-			if randf_range(0.0,1.4-bonus) < 0.2 && ((posX < 6 || posX > 14) || (posY < 6 || posY > 14)):
+		for y in range(Globals.GRID_HEIGHT):
+			var bonus = abs((y * x) - 180) / 180.0
+			var threshold = 1.4 - bonus
+			var in_outer_area = (x < CENTER_MIN or x > CENTER_MAX or y < CENTER_MIN or y > CENTER_MAX)
+			
+			if randf_range(0.0, threshold) < 0.2 and in_outer_area:
 				column.append("tree")
 			else:
 				column.append(null)
+		
 		GRID.append(column)
 
-
+# Spawn trees
 func spawnEntities():
-	for posX in range(GRID.size()):
-		var column = GRID[posX]
-		for posY in range(column.size()):
-			var item = column[posY]
-			if item != null:
-				spawnEntity("tree", Vector2(posX, posY))
+	for x in range(GRID.size()):
+		for y in range(GRID[x].size()):
+			var item = GRID[x][y]
+			if item == "tree":
+				spawnEntity("tree", Vector2(x, y))
 
-
-func spawnEntity(entity_key, grid_position, type: Globals.wagon_types=Globals.wagon_types.NONE):
+# Spawn Entites. For wagons, it will spawn it with a specific wagon type, based on what this function was called with. 
+# For entites such as trees it will spawn a NONE wagon type.
+func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon_types = Globals.wagon_types.NONE) -> void:
 	var entity = entity_files[entity_key].instantiate()
+	
 	if type != Globals.wagon_types.NONE:
 		entity.set_type(type)
 	
-	var game_position = Vector2.ZERO
-	game_position.x = (grid_position.x + 1) * 32
-	game_position.y = (grid_position.y + 0.5) * 32 + (int(grid_position.x) % 2) * 16
+	var game_position = Vector2(
+		(grid_position.x + 1) * 32,
+		(grid_position.y + 0.5) * 32 + (int(grid_position.x) % 2) * 16
+	)
 	
 	entity.global_position = game_position
-	
 	$Entities.call_deferred("add_child", entity)

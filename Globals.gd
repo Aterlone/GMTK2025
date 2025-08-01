@@ -14,3 +14,6 @@ enum wagon_types {
 
 @export var place: place_mode = place_mode.none
 @export var place_type: wagon_types = wagon_types.NONE
+
+var GRID_WIDTH: int = 20
+var GRID_HEIGHT: int = 20
