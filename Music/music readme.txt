@@ -2,7 +2,7 @@
 
 01. Main Theme		# loops on main menu
 02. Traveller		# plays once on map transition
-03. Preparation		# loops on build/settle phase - WIP
+03. Preparation		# loops on build/settle phase
 04. 			# PLACEHOLDER - plays once on ending build/settle phase
 05. Danger Ahead!		# loops until fanfare
 06. Charge!		# fanfare -  signals enemy arrival
