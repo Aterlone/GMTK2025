@@ -1,5 +1,10 @@
 extends Node
 
+enum resource_types {
+	wood,
+	gold
+}
+
 enum place_mode {
 	normal_wagon,
 	none
