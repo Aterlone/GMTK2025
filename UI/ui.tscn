@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://xcj10i8f6gyq"]
+[gd_scene load_steps=7 format=3 uid="uid://xcj10i8f6gyq"]
 
-[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Wagons/wagon.png" id="1_2fwl4"]
 [ext_resource type="Script" uid="uid://nuj4055ncbs1" path="res://UI/ui.gd" id="1_dajm1"]
+[ext_resource type="Texture2D" uid="uid://c1jrmtwska8to" path="res://UI/resource_wagon_icon.png" id="2_hat8c"]
+[ext_resource type="Texture2D" uid="uid://1nrsu6blct7e" path="res://UI/battle_wagon_icon.png" id="3_3sbvi"]
 [ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="3_e6gg6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hat8c"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sbvi"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -17,17 +24,21 @@ script = ExtResource("1_dajm1")
 
 [node name="place_resource_wagon" type="Button" parent="CanvasLayer"]
 offset_left = 1.0
-offset_top = 248.0
-offset_right = 109.0
-offset_bottom = 356.0
-icon = ExtResource("1_2fwl4")
+offset_top = 312.0
+offset_right = 46.0
+offset_bottom = 357.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_hat8c")
+icon = ExtResource("2_hat8c")
+expand_icon = true
 
 [node name="place_combat_wagon" type="Button" parent="CanvasLayer"]
-offset_left = 112.0
-offset_top = 250.0
-offset_right = 220.0
+offset_left = 55.0
+offset_top = 312.0
+offset_right = 101.0
 offset_bottom = 358.0
-icon = ExtResource("1_2fwl4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sbvi")
+icon = ExtResource("3_3sbvi")
+expand_icon = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("3_e6gg6")

@@ -29,8 +29,8 @@ func _input(event):
 				placing.remove_child(move_entity)
 				place_wagon()
 				Globals.place = Globals.place_mode.none
-			else:
-				placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
+		else:
+			placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
 
 	# Handle selecting a wagon to move
 	elif event.is_action_pressed("move"):
@@ -48,7 +48,6 @@ func _input(event):
 		var new_index = getGridIndex(selected_wagon.position)
 		Globals.GRID[new_index.x][new_index.y] = selected_wagon
 
-		print("move")
 		selected_wagon = null
 
 # Snapped grid origin

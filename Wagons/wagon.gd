@@ -18,7 +18,7 @@ extends Node2D
 	},
 	Globals.wagon_types.NONE : {
 		"health" : 0,
-		"color" : Color.BLACK,
+		"color" : Color.WHITE,
 		"cost" : 100000000,
 	}
 }
