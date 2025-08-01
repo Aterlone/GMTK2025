@@ -6,5 +6,5 @@ func being_mined():
 	life -= 1
 	
 func _process(delta: float) -> void:
-	if not life:
+	if life <= 0:
 		self.queue_free()
