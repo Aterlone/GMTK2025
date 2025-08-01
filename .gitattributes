@@ -1,2 +1,9 @@
+# Treat images and MP3s as binary — don't touch line endings!
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.mp3 binary
+
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
