@@ -79,6 +79,8 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 ### Below is code for wagons checking resources.
 
 func check_resource(x, y):
+	x = max(0, min(x, Globals.GRID_WIDTH-1))
+	y = max(0, min(y, Globals.GRID_HEIGHT-1))
 	if Globals.GRID[x][y] != null && Globals.GRID[x][y].name.contains("tree"):
 		trees_being_mined.append(Globals.GRID[x][y])
 
