@@ -61,7 +61,12 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 	
 	if type != Globals.wagon_types.NONE:
 		entity.set_type(type)
-	
+		# Check if user has money, if so then take off money
+		if (Globals.resource_count >= entity.wagon_data[type]["cost"]):
+			Globals.resource_count -= entity.wagon_data[type]["cost"]
+		else:
+			Globals.GRID[grid_position.x][grid_position.y] = null
+			return
 	var game_position = Vector2(
 		(grid_position.x + 1) * 32,
 		(grid_position.y + 0.5) * 32 + (int(grid_position.x) % 2) * 16
@@ -110,6 +115,6 @@ func _process(delta: float) -> void:
 			tree.being_mined()
 			Globals.resource_count += 1
 		#Globals.resource_count += (len(trees_being_mined))
-		$Placer/Label2.text = "Resources: " + str(Globals.resource_count)
+		$Placer/Label2.text = "Wood: " + str(Globals.resource_count)
 		clock = 0 
 	

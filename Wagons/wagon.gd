@@ -1,21 +1,25 @@
 extends Node2D
 
-var wagon_data = {
+@export var wagon_data = {
 	Globals.wagon_types.RESOURCE : {
 		"health" : 1,
-		"color" : Color.BLUE
+		"color" : Color.BLUE,
+		"cost" : 200,
 	},
 	Globals.wagon_types.COMBAT : {
 		"health" : 3,
-		"color" : Color.RED
+		"color" : Color.RED,
+		"cost" : 400,
 	},
 	Globals.wagon_types.BUILDER : {
 		"health" : 5,
-		"color" : Color.WHITE
+		"color" : Color.WHITE,
+		"cost" : 100000000,
 	},
 	Globals.wagon_types.NONE : {
 		"health" : 0,
-		"color" : Color.BLACK
+		"color" : Color.BLACK,
+		"cost" : 100000000,
 	}
 }
 

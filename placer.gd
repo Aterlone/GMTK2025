@@ -125,3 +125,4 @@ func place_wagon():
 	grid_index = getGridIndex($BaseTileWhite.global_position)
 	Globals.GRID[grid_index.x][grid_index.y] = "wagon"
 	get_parent().spawnEntity("wagon", grid_index, Globals.place_type)
+	
