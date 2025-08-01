@@ -34,9 +34,13 @@ func set_type(wagon_type: Globals.wagon_types) -> void:
 
 func _ready() -> void:
 	setup_wagon()
-	
-	$Area2D.connect("mouse_entered", set_mouse.bind(true))
-	$Area2D.connect("mouse_exited", set_mouse.bind(false))
+	connect_functions()
+
+func connect_functions():
+	$Area2D.connect("mouse_entered", Callable(self, "set_mouse").bind(true))
+	$Area2D.connect("mouse_exited", Callable(self, "set_mouse").bind(false))
+	$Area2D.monitoring = true
+	$Area2D.monitorable = true
 
 
 func setup_wagon():
@@ -45,7 +49,10 @@ func setup_wagon():
 	
 
 func set_mouse(overlapping : bool):
+	print(overlapping)
 	mouse_over = overlapping
 
 func _physics_process(delta: float) -> void:
-	pass
+	var signals = $Area2D.get_signal_list()
+	for s in signals:
+		print(s.name)

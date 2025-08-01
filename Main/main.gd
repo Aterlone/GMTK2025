@@ -59,6 +59,7 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 	entity.name = entity_key + str(entity_counter) + str(grid_position)
 	entity_counter += 1
 	
+	# if it's a wagon
 	if type != Globals.wagon_types.NONE:
 		entity.set_type(type)
 		# Check if user has money, if so then take off money

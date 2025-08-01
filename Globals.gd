@@ -24,4 +24,4 @@ var GRID_WIDTH: int = 20
 var GRID_HEIGHT: int = 20
 var GRID = []
 
-var resource_count: int = 500
+var resource_count: int = 300
