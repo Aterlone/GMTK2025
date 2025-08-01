@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkv08nvnrst51"]
+[gd_scene load_steps=3 format=3 uid="uid://bkv08nvnrst51"]
 
 [ext_resource type="Texture2D" uid="uid://dc5u3bq1stf6h" path="res://tree.png" id="1_brfkd"]
+[ext_resource type="Script" uid="uid://c4eyllxcln2qs" path="res://tree.gd" id="1_nnvrw"]
 
 [node name="Tree" type="Node2D"]
+script = ExtResource("1_nnvrw")
 
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(0, -48)

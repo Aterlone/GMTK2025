@@ -10,6 +10,8 @@ var entity_files = {
 var entity_counter = 0
 var clock = 0
 
+var trees_being_mined = []
+
 func _ready() -> void:
 	window()
 	createGrid()
@@ -72,23 +74,19 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 
 func check_resource(x, y):
 	if Globals.GRID[x][y] != null && Globals.GRID[x][y].name.contains("tree"):
-		return true
+		trees_being_mined.append(Globals.GRID[x][y])
 
 # Somethign about the position is wrong.
 func set_resources(x, y):
-	if check_resource(x+1, y+1):
-		Globals.resource_collection_speed += 1
-	if check_resource(x-1, y+1):
-		Globals.resource_collection_speed += 1
-	if check_resource(x+1, y-1):
-		Globals.resource_collection_speed += 1
-	if check_resource(x-1, y-1):
-		Globals.resource_collection_speed += 1
+	check_resource(x+1, y+1)
+	check_resource(x-1, y+1)
+	check_resource(x+1, y-1)
+	check_resource(x-1, y-1)
 		
 func check_surrounding():
 	var tree_count = 0
 	var rock_count = 0
-	Globals.resource_collection_speed = 0
+	trees_being_mined = []
 
 	# for tile in surrounding ...
 	for x in range(Globals.GRID_WIDTH):
@@ -97,13 +95,12 @@ func check_surrounding():
 				var is_resource_wagon = Globals.GRID[x][y].name.contains("wagon") && Globals.GRID[x][y].wagon_type == Globals.wagon_types.RESOURCE
 				if is_resource_wagon:
 					set_resources(x, y)
-	print(Globals.resource_collection_speed)
-
+					
 func _process(delta: float) -> void:
 	clock += delta
 	check_surrounding()
 	if clock >= 1:
-		Globals.resource_count += Globals.resource_collection_speed
+		Globals.resource_count += (len(trees_being_mined))
 		$Placer/Label2.text = "Resources: " + str(Globals.resource_count)
 		clock = 0 
 	
