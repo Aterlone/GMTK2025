@@ -100,6 +100,8 @@ func _process(delta: float) -> void:
 	clock += delta
 	check_surrounding()
 	if clock >= 1:
+		for tree in trees_being_mined:
+			tree.being_mined()
 		Globals.resource_count += (len(trees_being_mined))
 		$Placer/Label2.text = "Resources: " + str(Globals.resource_count)
 		clock = 0 
