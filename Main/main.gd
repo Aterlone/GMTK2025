@@ -56,7 +56,7 @@ func spawnEntities():
 # For entites such as trees it will spawn a NONE wagon type.
 func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon_types = Globals.wagon_types.NONE) -> void:
 	var entity = entity_files[entity_key].instantiate()
-	entity.name = entity_key + str(entity_counter)
+	entity.name = entity_key + str(entity_counter) + str(grid_position)
 	entity_counter += 1
 	
 	if type != Globals.wagon_types.NONE:
@@ -78,10 +78,16 @@ func check_resource(x, y):
 
 # Somethign about the position is wrong.
 func set_resources(x, y):
-	check_resource(x+1, y+1)
-	check_resource(x-1, y+1)
-	check_resource(x+1, y-1)
-	check_resource(x-1, y-1)
+	if x%2:
+		check_resource(x+1, y)
+		check_resource(x-1, y)
+		check_resource(x+1, y+1)
+		check_resource(x-1, y+1)
+	else:
+		check_resource(x+1, y)
+		check_resource(x-1, y)
+		check_resource(x+1, y-1)
+		check_resource(x-1, y-1)
 		
 func check_surrounding():
 	var tree_count = 0

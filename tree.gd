@@ -4,7 +4,6 @@ extends Node2D
 
 func being_mined():
 	life -= 1
-	print("a")
 	
 func _process(delta: float) -> void:
 	if not life:

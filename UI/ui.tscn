@@ -31,7 +31,6 @@ icon = ExtResource("1_2fwl4")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("3_e6gg6")
-autoplay = true
 parameters/looping = true
 
 [connection signal="pressed" from="CanvasLayer/place_resource_wagon" to="." method="_on_place_resource_wagon_pressed"]
