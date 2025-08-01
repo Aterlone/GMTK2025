@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c18d8265hu5u3"
+path="res://.godot/imported/danger ahead!.mp3-e7b72f5e399b297f4f79d1f63f191ae5.mp3str"
+
+[deps]
+
+source_file="res://Music/danger ahead!.mp3"
+dest_files=["res://.godot/imported/danger ahead!.mp3-e7b72f5e399b297f4f79d1f63f191ae5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

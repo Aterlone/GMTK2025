@@ -37,10 +37,8 @@ func _ready() -> void:
 	connect_functions()
 
 func connect_functions():
-	$Area2D.connect("mouse_entered", Callable(self, "set_mouse").bind(true))
-	$Area2D.connect("mouse_exited", Callable(self, "set_mouse").bind(false))
-	$Area2D.monitoring = true
-	$Area2D.monitorable = true
+	$Control.connect("mouse_entered", Callable(self, "set_mouse").bind(true))
+	$Control.connect("mouse_exited", Callable(self, "set_mouse").bind(false))
 
 
 func setup_wagon():
@@ -49,10 +47,7 @@ func setup_wagon():
 	
 
 func set_mouse(overlapping : bool):
-	print(overlapping)
 	mouse_over = overlapping
 
-func _physics_process(delta: float) -> void:
-	var signals = $Area2D.get_signal_list()
-	for s in signals:
-		print(s.name)
+func is_mouse_over() -> bool:
+	return mouse_over

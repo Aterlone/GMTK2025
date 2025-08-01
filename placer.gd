@@ -3,35 +3,53 @@ extends Node2D
 var WagonScene := preload("res://Wagons/wagon.tscn")
 var entities: Node
 var placing: Node
+var selected_wagon: Node
 
 func _ready() -> void:
 	entities = get_node("/root/Main/Entities")
 	placing = get_node("/root/Main/Unplaced_Entity")
 
 func _input(event):
-	
-	var not_taken = true
-	
-	if placing.get_child_count():
-		for child in entities.get_children():
-			if child.position == placing.get_child(0).position:
+	var wagons = entities.get_children()
+	var placing_has_child = placing.get_child_count() > 0
+
+	# Handle placing a new wagon
+	if placing_has_child:
+		var placing_pos = placing.get_child(0).position
+		var not_taken = true
+		
+		for child in wagons:
+			if child.position == placing_pos:
 				not_taken = false
 				break
-		if event.is_action_pressed("place") and not_taken:
-			var move_entity = placing.get_child(0)
-			placing.remove_child(move_entity)
-			place_wagon()
-			Globals.place = Globals.place_mode.none
-		else:
-			placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
-	
-	if event.is_action_pressed("delete"):
-		return
-		var wagons = entities.get_children()
-		for wagon in wagons:
-			if wagon.mouse_over:
-				wagon.queue_free()
 
+		if event.is_action_pressed("place"):
+			if not_taken:
+				var move_entity = placing.get_child(0)
+				placing.remove_child(move_entity)
+				place_wagon()
+				Globals.place = Globals.place_mode.none
+			else:
+				placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
+
+	# Handle selecting a wagon to move
+	elif event.is_action_pressed("move"):
+		for wagon in wagons:
+			if wagon.name.contains("wagon") and wagon.is_mouse_over():
+				selected_wagon = wagon
+				break
+
+	# Handle moving a selected wagon
+	if event.is_action_pressed("place") and selected_wagon != null:
+		var old_index = getGridIndex(selected_wagon.position)
+		Globals.GRID[old_index.x][old_index.y] = null
+
+		selected_wagon.position = getGridPosition(get_global_mouse_position())
+		var new_index = getGridIndex(selected_wagon.position)
+		Globals.GRID[new_index.x][new_index.y] = selected_wagon
+
+		print("move")
+		selected_wagon = null
 
 # Snapped grid origin
 func snap_to_grid(target: Vector2) -> Vector2:
@@ -99,7 +117,6 @@ func _physics_process(delta: float) -> void:
 
 	# Set type of tile
 	$Label.text = str(grid_value)
-	
 	# Color whether you can place on the tile for the tester.
 	match grid_value:
 		null:

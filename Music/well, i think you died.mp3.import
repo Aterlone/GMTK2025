@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cuyt7unlrbw1s"
+path="res://.godot/imported/well, i think you died.mp3-0c8d8e9809c7ac1bf42801401c6f5b59.mp3str"
+
+[deps]
+
+source_file="res://Music/well, i think you died.mp3"
+dest_files=["res://.godot/imported/well, i think you died.mp3-0c8d8e9809c7ac1bf42801401c6f5b59.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
