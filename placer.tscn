@@ -14,3 +14,8 @@ texture = ExtResource("1_di4i5")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 161.0
+offset_right = 201.0
+offset_bottom = 23.0

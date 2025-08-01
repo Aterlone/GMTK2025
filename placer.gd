@@ -23,7 +23,7 @@ func _input(event):
 			place_wagon()
 			Globals.place = Globals.place_mode.none
 		else:
-			placing.get_child(0).position = getGridPosition(get_global_mouse_position())
+			placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
 	
 	if event.is_action_pressed("delete"):
 		return
@@ -87,7 +87,7 @@ func getGridIndex(origin):
 
 
 func _physics_process(delta: float) -> void:
-	$BaseTileWhite.global_position = getGridPosition(get_global_mouse_position())
+	$BaseTileWhite.global_position = getGridPosition(get_viewport().get_mouse_position())
 	
 	var grid_index = getGridIndex($BaseTileWhite.global_position)
 	
@@ -95,7 +95,7 @@ func _physics_process(delta: float) -> void:
 	grid_index.x = max(0, min(grid_index.x, Globals.GRID_WIDTH - 1))
 	grid_index.y = max(0, min(grid_index.y, Globals.GRID_HEIGHT - 1))
 	
-	var grid_value = get_parent().GRID[grid_index.x][grid_index.y]
+	var grid_value = Globals.GRID[grid_index.x][grid_index.y]
 
 	# Set type of tile
 	$Label.text = str(grid_value)
@@ -111,7 +111,7 @@ func _physics_process(delta: float) -> void:
 	# Create Placing Wagon Object
 	if Globals.place == Globals.place_mode.normal_wagon && not placing.get_child_count():
 		var wagon = WagonScene.instantiate()
-		wagon.position = getGridPosition(get_global_mouse_position())
+		wagon.position = getGridPosition(get_viewport().get_mouse_position())
 		placing.add_child(wagon)
 
 
@@ -123,5 +123,5 @@ func place_wagon():
 		return
 	
 	grid_index = getGridIndex($BaseTileWhite.global_position)
-	get_parent().GRID[grid_index.x][grid_index.y] = "wagon"
+	Globals.GRID[grid_index.x][grid_index.y] = "wagon"
 	get_parent().spawnEntity("wagon", grid_index, Globals.place_type)

@@ -1,6 +1,5 @@
 extends Node2D
 
-var GRID = []
 
 
 var entity_files = {
@@ -8,10 +7,15 @@ var entity_files = {
 	"wagon" : load("res://Wagons/wagon.tscn")
 }
 
+var entity_counter = 0
+var clock = 0
+
 func _ready() -> void:
 	window()
 	createGrid()
 	spawnEntities()
+	#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 
 
 func window():
@@ -36,13 +40,13 @@ func createGrid():
 			else:
 				column.append(null)
 		
-		GRID.append(column)
+		Globals.GRID.append(column)
 
 # Spawn trees
 func spawnEntities():
-	for x in range(GRID.size()):
-		for y in range(GRID[x].size()):
-			var item = GRID[x][y]
+	for x in range(Globals.GRID.size()):
+		for y in range(Globals.GRID[x].size()):
+			var item = Globals.GRID[x][y]
 			if item == "tree":
 				spawnEntity("tree", Vector2(x, y))
 
@@ -50,6 +54,8 @@ func spawnEntities():
 # For entites such as trees it will spawn a NONE wagon type.
 func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon_types = Globals.wagon_types.NONE) -> void:
 	var entity = entity_files[entity_key].instantiate()
+	entity.name = entity_key + str(entity_counter)
+	entity_counter += 1
 	
 	if type != Globals.wagon_types.NONE:
 		entity.set_type(type)
@@ -61,3 +67,43 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 	
 	entity.global_position = game_position
 	$Entities.call_deferred("add_child", entity)
+	Globals.GRID[grid_position.x][grid_position.y] = entity
+### Below is code for wagons checking resources.
+
+func check_resource(x, y):
+	if Globals.GRID[x][y] != null && Globals.GRID[x][y].name.contains("tree"):
+		return true
+
+# Somethign about the position is wrong.
+func set_resources(x, y):
+	if check_resource(x+1, y+1):
+		Globals.resource_collection_speed += 1
+	if check_resource(x-1, y+1):
+		Globals.resource_collection_speed += 1
+	if check_resource(x+1, y-1):
+		Globals.resource_collection_speed += 1
+	if check_resource(x-1, y-1):
+		Globals.resource_collection_speed += 1
+		
+func check_surrounding():
+	var tree_count = 0
+	var rock_count = 0
+	Globals.resource_collection_speed = 0
+
+	# for tile in surrounding ...
+	for x in range(Globals.GRID_WIDTH):
+		for y in range(Globals.GRID_HEIGHT):
+			if Globals.GRID[x][y] != null:
+				var is_resource_wagon = Globals.GRID[x][y].name.contains("wagon") && Globals.GRID[x][y].wagon_type == Globals.wagon_types.RESOURCE
+				if is_resource_wagon:
+					set_resources(x, y)
+	print(Globals.resource_collection_speed)
+
+func _process(delta: float) -> void:
+	clock += delta
+	check_surrounding()
+	if clock >= 1:
+		Globals.resource_count += Globals.resource_collection_speed
+		$Placer/Label2.text = "Resources: " + str(Globals.resource_count)
+		clock = 0 
+	

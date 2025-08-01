@@ -1,8 +1,8 @@
 extends Node
 
 enum resource_types {
-	wood,
-	gold
+	WOOD,
+	GOLD
 }
 
 enum place_mode {
@@ -22,3 +22,7 @@ enum wagon_types {
 
 var GRID_WIDTH: int = 20
 var GRID_HEIGHT: int = 20
+var GRID = []
+
+var resource_collection_speed: int = 0
+var resource_count: int = 0

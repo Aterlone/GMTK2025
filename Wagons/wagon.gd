@@ -19,14 +19,11 @@ var wagon_data = {
 	}
 }
 
-var wagon_type: Globals.wagon_types = Globals.wagon_types.NONE
+@export var wagon_type: Globals.wagon_types = Globals.wagon_types.NONE
 
 var mouse_over: bool = false
 
 var health = 0;
-
-var resource_type: Globals.resource_types
-var resource_count: int = 0
 
 func set_type(wagon_type: Globals.wagon_types) -> void:
 	self.wagon_type = wagon_type
@@ -46,10 +43,5 @@ func setup_wagon():
 func set_mouse(overlapping : bool):
 	mouse_over = overlapping
 
-func check_surrounding():
-	var tree_count = 0
-	var rock_count = 0
-	# for tile in surrounding ...
-		
 func _physics_process(delta: float) -> void:
 	pass
