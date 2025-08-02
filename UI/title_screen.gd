@@ -18,6 +18,12 @@ func _ready() -> void:
 	for child in $CanvasLayer/settings.get_children():
 		child.visible = false
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu"):
+		for child in $CanvasLayer/settings.get_children():
+			child.visible = true
+		$CanvasLayer/ColorRect.visible = true
+		$CanvasLayer/Sprite2D.visible = true
 
 func _on_settings_pressed() -> void:
 	for child in $CanvasLayer/settings.get_children():
@@ -32,8 +38,10 @@ func _on_start_pressed() -> void:
 		
 	for child in $CanvasLayer/main_menu.get_children():
 		child.visible = false
-		$CanvasLayer/ColorRect.visible = false
-		$CanvasLayer/Sprite2D.visible = false
+		
+	$CanvasLayer/ColorRect.visible = false
+	$CanvasLayer/Sprite2D.visible = false
+	$CanvasLayer/main_menu/start.text = "Continue"
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
