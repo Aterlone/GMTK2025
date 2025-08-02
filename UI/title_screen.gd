@@ -17,6 +17,10 @@ func _ready() -> void:
 	)
 	for child in $CanvasLayer/settings.get_children():
 		child.visible = false
+	for child in $'../UI'.get_children():
+		child.visible = false
+
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
@@ -38,6 +42,9 @@ func _on_start_pressed() -> void:
 		
 	for child in $CanvasLayer/main_menu.get_children():
 		child.visible = false
+		
+	for child in $'../UI'.get_children():
+		child.visible = true
 		
 	$CanvasLayer/ColorRect.visible = false
 	$CanvasLayer/Sprite2D.visible = false
