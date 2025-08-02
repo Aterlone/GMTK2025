@@ -3,12 +3,11 @@
 01. Main Theme		# loops on main menu
 02. Traveller		# plays once on map transition
 03. Preparation		# loops on build/settle phase
-04. 			# PLACEHOLDER - plays once on ending build/settle phase
+04. Ominous Transition Sting	# plays once on ending build/settle phase
 05. Danger Ahead!		# loops until fanfare
-06. Charge!		# fanfare -  signals enemy arrival
-07. Battle Theme		# loops during battle phase - WIP
-08. 			# PLACEHOLDER - plays once on completing battle phase
-09. Well, I Think You Died	# plays once on game over
+06. CHAAARGE!!		# fanfare -  signals enemy arrival
+07. Greedy Bastard		# loops during battle phase
+08. WE'RE RICH		# plays once on completing battle phase
+09. Well, I Think You Died...	# plays once on game over
 
-Music by Trilbique
-based
+Music by Tai'Rosai (@Trilbique)
