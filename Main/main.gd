@@ -3,7 +3,6 @@ extends Node2D
 
 var SPAWNER;
 var ENTITIES;
-var ENEMIES;
 
 var clock = 0
 
@@ -25,7 +24,6 @@ func create_level():
 	
 	SPAWNER = level_entity.get_node("Spawner")
 	ENTITIES = level_entity.get_node("Entities")
-	ENEMIES = level_entity.get_node("Enemies")
 	Globals.createGrid()
 	SPAWNER.spawnEntities()
 	
