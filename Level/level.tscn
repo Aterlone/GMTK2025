@@ -20,7 +20,13 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAA
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true
 
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
 [node name="Placer" parent="." instance=ExtResource("2_52x1o")]
 
 [node name="Spawner" type="Node" parent="."]
 script = ExtResource("4_52x1o")
+
+[node name="EnemyDelay" type="Timer" parent="Spawner"]
+autostart = true

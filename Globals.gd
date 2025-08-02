@@ -25,6 +25,7 @@ var wagon_data = {
 		"health" : 1,
 		"color" : Color.BLUE,
 		"cost" : 200,
+		"mineSpeed" : 1.0
 	},
 	Globals.wagon_types.COMBAT : {
 		"health" : 3,
@@ -87,3 +88,66 @@ func createGrid():
 				column.append(null)
 		
 		Globals.GRID.append(column)
+
+
+# Snapped grid origin
+func snap_to_grid(target: Vector2) -> Vector2:
+	return Vector2(
+		floor((target.x + 32) / 64) * 64,
+		floor((target.y + 16) / 32) * 32
+	)
+
+
+# For slope calculation
+func get_line_y(offset: Vector2, slope: float, shift: float) -> float:
+	return slope * offset.x + shift
+
+
+# Checks for diamonds edges
+func is_above(target: Vector2, grid_target: Vector2, slope: float, shift: float) -> bool:
+	var offset = target - grid_target
+	var line_y = get_line_y(offset, slope, shift) + grid_target.y
+	return target.y < line_y
+
+
+# Checks for diamonds edges
+func is_below(target: Vector2, grid_target: Vector2, slope: float, shift: float) -> bool:
+	var offset = target - grid_target
+	var line_y = get_line_y(offset, slope, shift) + grid_target.y
+	return target.y > line_y
+
+
+# Get gridded position.
+func getGridPosition(target: Vector2) -> Vector2:
+	var grid_target = snap_to_grid(target)
+
+	if is_below(target, grid_target, -0.5, 16):
+		grid_target += Vector2(32, 16)
+
+	if is_above(target, grid_target, 0.5, -16):
+		grid_target += Vector2(32, -16)
+
+	if is_above(target, grid_target, -0.5, -16):
+		grid_target += Vector2(-32, -16)
+
+	if is_below(target, grid_target, 0.5, 16):
+		grid_target += Vector2(-32, 16)
+		
+	return grid_target
+
+
+# Get grid index values
+func getGridIndex(origin):
+	var grid_coords = origin / 32
+	grid_coords.y = ceil(grid_coords.y)
+	grid_coords -= Vector2(1,1)
+	
+	# If larger than map set to grid_size-1
+	grid_coords.x = clamp(grid_coords.x, 0, Globals.GRID_WIDTH - 1)
+	grid_coords.y = clamp(grid_coords.y, 0, Globals.GRID_HEIGHT - 1)
+	
+	return grid_coords
+
+
+func getIndexFromGlobal(position_global):
+	return getGridIndex(getGridPosition(position_global))

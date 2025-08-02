@@ -3,6 +3,9 @@ extends Sprite2D
 @export var life: int = 5
 
 
+var resource_type = Globals.resource_types.WOOD
+
+
 func _ready() -> void:
 	match Globals.current_level:
 		Globals.levels.GOBLINS:
@@ -12,9 +15,10 @@ func _ready() -> void:
 		
 
 
-func being_mined():
-	life -= 1
-	$AnimationPlayer.play("Hurt")
+func mine():
+	if !$AnimationPlayer.is_playing():
+		life -= 1
+		$AnimationPlayer.play("Hurt")
 
 
 func _process(delta: float) -> void:

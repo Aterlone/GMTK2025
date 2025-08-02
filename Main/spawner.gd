@@ -7,6 +7,11 @@ var entity_files = {
 	"wagon" : load("res://Wagons/wagon.tscn")
 }
 
+
+func _ready() -> void:
+	$EnemyDelay.connect("timeout", spawnEnemy)
+
+
 # Spawn trees
 func spawnEntities():
 	for x in range(Globals.GRID.size()):
@@ -56,8 +61,24 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 	)
 	
 	entity.global_position = game_position
-	get_parent().get_node("Entities").call_deferred("add_child", entity)
+	Globals.MAIN.ENTITIES.call_deferred("add_child", entity)
 	
 	
 	Globals.GRID[grid_position.x][grid_position.y] = entity
-### Below is code for wagons checking resources.
+
+func spawnEnemy():
+	var screenWidth = 640
+	var screenHeight = 360
+	
+	var random_position = Vector2.ZERO
+	random_position -= 32 * Vector2(1,1)
+	random_position.x += randi_range(0,1) * screenWidth + 32
+	random_position.y += randi_range(0,1) * screenHeight + 32
+	
+	
+	var enemy_entity = load("res://Enemies/grunt.tscn").instantiate()
+	enemy_entity.global_position = random_position
+	Globals.MAIN.ENTITIES.call_deferred("add_child", enemy_entity)
+	
+	
+	

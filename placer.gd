@@ -20,7 +20,7 @@ func _input(event):
 		if isValidCell(get_global_mouse_position()):
 			# will skip empty cells
 			return
-		var grid_index = getGridIndex(getGridPosition(get_global_mouse_position()))
+		var grid_index = Globals.getIndexFromGlobal(get_global_mouse_position())
 		var grid_value = Globals.GRID[grid_index.x][grid_index.y]
 		
 		if grid_value.name.contains("wagon"):
@@ -32,11 +32,11 @@ func _input(event):
 		if !isValidCell(get_global_mouse_position()):
 			return
 		
-		var old_index = getGridIndex(selected_wagon.position)
+		var old_index = Globals.getIndexFromGlobal(selected_wagon.position)
 		Globals.GRID[old_index.x][old_index.y] = null
 
-		selected_wagon.position = getGridPosition(get_global_mouse_position())
-		var new_index = getGridIndex(selected_wagon.position)
+		selected_wagon.position = Globals.getGridPosition(get_global_mouse_position())
+		var new_index = Globals.getIndexFromGlobal(selected_wagon.position)
 		Globals.GRID[new_index.x][new_index.y] = selected_wagon
 
 		selected_wagon = null
@@ -100,13 +100,13 @@ func getGridIndex(origin):
 
 
 func isValidCell(cell_global_position):
-	var grid_coords = getGridIndex(getGridPosition(cell_global_position))
+	var grid_coords = Globals.getIndexFromGlobal(get_global_mouse_position())
 	var target_cell = Globals.GRID[grid_coords.x][grid_coords.y]
 	return (target_cell == null)
 
 
 func placer_graphic():
-	$BaseTileWhite.global_position = getGridPosition(get_global_mouse_position())
+	$BaseTileWhite.global_position = Globals.getGridPosition(get_global_mouse_position())
 	if isValidCell(get_global_mouse_position()):
 		$BaseTileWhite.modulate = Color.GREEN
 	else:
@@ -116,8 +116,7 @@ func placer_graphic():
 
 func _physics_process(delta: float) -> void:
 	
-	var grid_index = getGridIndex(getGridPosition(get_global_mouse_position()))
-	
+	var grid_index = Globals.getIndexFromGlobal(get_global_mouse_position())
 	var grid_value = Globals.GRID[grid_index.x][grid_index.y]
 	$Label.text = str(grid_value)
 	
@@ -130,11 +129,11 @@ func _physics_process(delta: float) -> void:
 
 
 func place_wagon():
-	var grid_index = getGridIndex($BaseTileWhite.global_position)
+	var grid_index = Globals.getIndexFromGlobal($BaseTileWhite.global_position)
 	
 	if grid_index.x >= Globals.GRID_WIDTH or grid_index.y >= Globals.GRID_HEIGHT:
 		## our position is off of the grid.
 		return
 	
-	grid_index = getGridIndex($BaseTileWhite.global_position)
+	grid_index = Globals.getIndexFromGlobal($BaseTileWhite.global_position)
 	Globals.MAIN.SPAWNER.spawnEntity("wagon", grid_index, Globals.entity_to_place)
