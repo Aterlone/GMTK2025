@@ -1,46 +1,37 @@
 extends Node2D
 
+
 var WagonScene := preload("res://Wagons/wagon.tscn")
 var entities: Node
 var placing: Node
 var selected_wagon: Node
 
-func _ready() -> void:
-	entities = get_node("/root/Main/Entities")
-	placing = get_node("/root/Main/Unplaced_Entity")
-
 func _input(event):
-	var wagons = entities.get_children()
-	var placing_has_child = placing.get_child_count() > 0
-
 	# Handle placing a new wagon
-	if placing_has_child:
-		var placing_pos = placing.get_child(0).position
-		var not_taken = true
-		
-		for child in wagons:
-			if child.position == placing_pos:
-				not_taken = false
-				break
-
-		if event.is_action_pressed("place"):
-			if not_taken:
-				var move_entity = placing.get_child(0)
-				placing.remove_child(move_entity)
+	if Globals.placing:
+		if isValidCell(get_global_mouse_position()):
+			if event.is_action_pressed("place"):
 				place_wagon()
-				Globals.place = Globals.place_mode.none
-		else:
-			placing.get_child(0).position = getGridPosition(get_viewport().get_mouse_position())
+				Globals.placing = false
 
 	# Handle selecting a wagon to move
+	
 	elif event.is_action_pressed("move"):
-		for wagon in wagons:
-			if wagon.name.contains("wagon") and wagon.is_mouse_over():
-				selected_wagon = wagon
-				break
+		if isValidCell(get_global_mouse_position()):
+			# will skip empty cells
+			return
+		var grid_index = getGridIndex(getGridPosition(get_global_mouse_position()))
+		var grid_value = Globals.GRID[grid_index.x][grid_index.y]
+		
+		if grid_value.name.contains("wagon"):
+			if grid_value.mouse_over:
+				selected_wagon = grid_value
 
 	# Handle moving a selected wagon
 	if event.is_action_pressed("place") and selected_wagon != null:
+		if !isValidCell(get_global_mouse_position()):
+			return
+		
 		var old_index = getGridIndex(selected_wagon.position)
 		Globals.GRID[old_index.x][old_index.y] = null
 
@@ -100,45 +91,50 @@ func getGridIndex(origin):
 	var grid_coords = origin / 32
 	grid_coords.y = ceil(grid_coords.y)
 	grid_coords -= Vector2(1,1)
+	
+	# If larger than map set to grid_size-1
+	grid_coords.x = clamp(grid_coords.x, 0, Globals.GRID_WIDTH - 1)
+	grid_coords.y = clamp(grid_coords.y, 0, Globals.GRID_HEIGHT - 1)
+	
 	return grid_coords
 
 
+func isValidCell(cell_global_position):
+	var grid_coords = getGridIndex(getGridPosition(cell_global_position))
+	var target_cell = Globals.GRID[grid_coords.x][grid_coords.y]
+	return (target_cell == null)
+
+
+func placer_graphic():
+	$BaseTileWhite.global_position = getGridPosition(get_global_mouse_position())
+	if isValidCell(get_global_mouse_position()):
+		$BaseTileWhite.modulate = Color.GREEN
+	else:
+		$BaseTileWhite.modulate = Color.RED
+	$BaseTileWhite.modulate.a = 0.5
+
+
 func _physics_process(delta: float) -> void:
-	$BaseTileWhite.global_position = getGridPosition(get_viewport().get_mouse_position())
 	
-	var grid_index = getGridIndex($BaseTileWhite.global_position)
-	
-	# If larger than map set to grid_size-1
-	grid_index.x = max(0, min(grid_index.x, Globals.GRID_WIDTH - 1))
-	grid_index.y = max(0, min(grid_index.y, Globals.GRID_HEIGHT - 1))
+	var grid_index = getGridIndex(getGridPosition(get_global_mouse_position()))
 	
 	var grid_value = Globals.GRID[grid_index.x][grid_index.y]
-
-	# Set type of tile
 	$Label.text = str(grid_value)
-	# Color whether you can place on the tile for the tester.
-	match grid_value:
-		null:
-			$BaseTileWhite.modulate = Color.GREEN
-		_:
-			$BaseTileWhite.modulate = Color.RED
-	$BaseTileWhite.modulate.a = 0.5
+	
+	placer_graphic()
 	
 	# Create Placing Wagon Object
-	if Globals.place == Globals.place_mode.normal_wagon && not placing.get_child_count():
-		var wagon = WagonScene.instantiate()
-		wagon.position = getGridPosition(get_viewport().get_mouse_position())
-		placing.add_child(wagon)
+	$Wagon.visible = (Globals.placing)
+	$Wagon.global_position = $BaseTileWhite.global_position
+	$Wagon.modulate = Globals.wagon_data[Globals.entity_to_place]["color"]
 
 
 func place_wagon():
 	var grid_index = getGridIndex($BaseTileWhite.global_position)
 	
-	if grid_index.x >= 20:
+	if grid_index.x >= Globals.GRID_WIDTH or grid_index.y >= Globals.GRID_HEIGHT:
 		## our position is off of the grid.
 		return
 	
 	grid_index = getGridIndex($BaseTileWhite.global_position)
-	Globals.GRID[grid_index.x][grid_index.y] = "wagon"
-	get_parent().spawnEntity("wagon", grid_index, Globals.place_type)
-	
+	Globals.MAIN.SPAWNER.spawnEntity("wagon", grid_index, Globals.entity_to_place)

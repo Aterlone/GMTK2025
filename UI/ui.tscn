@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://xcj10i8f6gyq"]
+[gd_scene load_steps=8 format=3 uid="uid://xcj10i8f6gyq"]
 
 [ext_resource type="Script" uid="uid://nuj4055ncbs1" path="res://UI/ui.gd" id="1_dajm1"]
-[ext_resource type="Texture2D" uid="uid://c1jrmtwska8to" path="res://UI/resource_wagon_icon.png" id="2_hat8c"]
-[ext_resource type="Texture2D" uid="uid://1nrsu6blct7e" path="res://UI/battle_wagon_icon.png" id="3_3sbvi"]
+[ext_resource type="Texture2D" uid="uid://c1jrmtwska8to" path="res://Art/resource_wagon_icon.png" id="2_hat8c"]
+[ext_resource type="Texture2D" uid="uid://1nrsu6blct7e" path="res://Art/battle_wagon_icon.png" id="3_3sbvi"]
 [ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="3_e6gg6"]
+[ext_resource type="Texture2D" uid="uid://cdgvta14ya4r1" path="res://Art/resource_icons.png" id="5_3sbvi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hat8c"]
 bg_color = Color(1, 1, 1, 1)
@@ -11,38 +12,103 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sbvi"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="Ui" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="UI" type="CanvasLayer"]
 script = ExtResource("1_dajm1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="place_resource_wagon" type="Button" parent="CanvasLayer"]
-offset_left = 1.0
-offset_top = 312.0
-offset_right = 46.0
-offset_bottom = 357.0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Main"]
+stream = ExtResource("3_e6gg6")
+parameters/looping = true
+
+[node name="Buttons" type="Control" parent="Main"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WagonResource" type="Button" parent="Main/Buttons"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 248.0
+offset_right = 632.0
+offset_bottom = 296.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_hat8c")
 icon = ExtResource("2_hat8c")
 expand_icon = true
 
-[node name="place_combat_wagon" type="Button" parent="CanvasLayer"]
-offset_left = 55.0
-offset_top = 312.0
-offset_right = 101.0
-offset_bottom = 358.0
+[node name="WagonCombat" type="Button" parent="Main/Buttons"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 304.0
+offset_right = 632.0
+offset_bottom = 352.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_3sbvi")
 icon = ExtResource("3_3sbvi")
 expand_icon = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
-stream = ExtResource("3_e6gg6")
-parameters/looping = true
+[node name="WagonBuilder" type="Button" parent="Main/Buttons"]
+layout_mode = 0
+offset_left = 584.0
+offset_top = 240.0
+offset_right = 632.0
+offset_bottom = 288.0
+rotation = -1.5708
+theme_override_styles/normal = SubResource("StyleBoxFlat_3sbvi")
+icon = ExtResource("3_3sbvi")
+expand_icon = true
 
-[connection signal="pressed" from="CanvasLayer/place_resource_wagon" to="." method="_on_place_resource_wagon_pressed"]
-[connection signal="pressed" from="CanvasLayer/place_combat_wagon" to="." method="_on_place_combat_wagon_pressed"]
+[node name="HUD" type="Control" parent="Main"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResourceIcons" type="Sprite2D" parent="Main/HUD"]
+position = Vector2(544, 24)
+scale = Vector2(2, 2)
+texture = ExtResource("5_3sbvi")
+hframes = 2
+
+[node name="Wood" type="Label" parent="Main/HUD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 8.0
+offset_right = 624.0
+offset_bottom = 40.0
+text = "0000"
+vertical_alignment = 1
+
+[node name="ResourceIcons2" type="Sprite2D" parent="Main/HUD"]
+position = Vector2(544, 64)
+scale = Vector2(2, 2)
+texture = ExtResource("5_3sbvi")
+hframes = 2
+frame = 1
+
+[node name="Gold" type="Label" parent="Main/HUD"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 48.0
+offset_right = 624.0
+offset_bottom = 80.0
+text = "0000"
+vertical_alignment = 1
+
+[node name="Builders" type="Label" parent="Main/HUD"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 88.0
+offset_right = 632.0
+offset_bottom = 112.0
+text = "No Builders!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Main"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 320.0
+offset_right = 98.0
+offset_bottom = 351.0
+text = "Next Level"

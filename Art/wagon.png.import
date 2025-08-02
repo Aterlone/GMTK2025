@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwsb6rjyfqx5j"
-path="res://.godot/imported/base_tile_white.png-0496570cd73ab766c90ab235f0ce6938.ctex"
+uid="uid://dofcvxoa3a3l6"
+path="res://.godot/imported/wagon.png-573271ddc4b97fb4d3e223735bba4115.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://base_tile_white.png"
-dest_files=["res://.godot/imported/base_tile_white.png-0496570cd73ab766c90ab235f0ce6938.ctex"]
+source_file="res://Art/wagon.png"
+dest_files=["res://.godot/imported/wagon.png-573271ddc4b97fb4d3e223735bba4115.ctex"]
 
 [params]
 

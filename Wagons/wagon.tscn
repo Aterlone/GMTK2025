@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbs5qeb7qv6p6"]
 
-[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Wagons/wagon.png" id="1_16fkb"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="1_16fkb"]
 [ext_resource type="Script" uid="uid://cewmyk57gjy1j" path="res://Wagons/wagon.gd" id="1_mdkc6"]
-[ext_resource type="Texture2D" uid="uid://dc5u3bq1stf6h" path="res://tree.png" id="2_mdkc6"]
+[ext_resource type="Texture2D" uid="uid://dc5u3bq1stf6h" path="res://Art/tree.png" id="2_mdkc6"]
 
 [node name="Wagon" type="Node2D"]
 script = ExtResource("1_mdkc6")

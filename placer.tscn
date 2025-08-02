@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwq8x5mjo7riu"]
+[gd_scene load_steps=4 format=3 uid="uid://dwq8x5mjo7riu"]
 
-[ext_resource type="Texture2D" uid="uid://dwsb6rjyfqx5j" path="res://base_tile_white.png" id="1_di4i5"]
+[ext_resource type="Texture2D" uid="uid://dwsb6rjyfqx5j" path="res://Art/base_tile_white.png" id="1_di4i5"]
 [ext_resource type="Script" uid="uid://u7lw5klaco3f" path="res://placer.gd" id="1_nqqtd"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="3_vwqld"]
 
 [node name="Placer" type="Node2D"]
 script = ExtResource("1_nqqtd")
@@ -20,3 +21,8 @@ offset_left = 483.0
 offset_top = 10.0
 offset_right = 523.0
 offset_bottom = 33.0
+
+[node name="Wagon" type="Sprite2D" parent="."]
+z_index = 4096
+texture = ExtResource("3_vwqld")
+offset = Vector2(0, -16)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1nrsu6blct7e"
-path="res://.godot/imported/battle_wagon_icon.png-7833f6e934a6ba99598213216a82f36c.ctex"
+uid="uid://dc5u3bq1stf6h"
+path="res://.godot/imported/tree.png-e1ba68e8cd68cdbd8bf040bd9214b4b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/battle_wagon_icon.png"
-dest_files=["res://.godot/imported/battle_wagon_icon.png-7833f6e934a6ba99598213216a82f36c.ctex"]
+source_file="res://Art/tree.png"
+dest_files=["res://.godot/imported/tree.png-e1ba68e8cd68cdbd8bf040bd9214b4b6.ctex"]
 
 [params]
 
