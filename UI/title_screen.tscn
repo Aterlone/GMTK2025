@@ -149,8 +149,7 @@ text = "Mute"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5whv5")
-volume_db = -5.0
-autoplay = true
+volume_db = -20.0
 
 [connection signal="button_down" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_down"]
 [connection signal="button_up" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_up"]

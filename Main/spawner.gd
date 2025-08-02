@@ -10,6 +10,7 @@ var entity_files = {
 
 func _ready() -> void:
 	$EnemyDelay.connect("timeout", spawnEnemy)
+	
 
 
 # Spawn trees
