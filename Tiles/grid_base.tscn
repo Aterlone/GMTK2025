@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dgot36ojvkh75" path="res://Art/base_tile.png" id="1_570tw"]
 
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_570tw"]
 texture = ExtResource("1_570tw")
 texture_region_size = Vector2i(64, 32)

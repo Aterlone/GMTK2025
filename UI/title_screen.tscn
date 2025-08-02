@@ -1,0 +1,159 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqjifh313s0v6"]
+
+[ext_resource type="Script" uid="uid://clvtsrngtivo2" path="res://UI/title_screen.gd" id="1_coop4"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="1_iaef4"]
+[ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="3_5whv5"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_coop4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 641.0
+offset_bottom = 361.0
+color = Color(0.135012, 0.135012, 0.135012, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(434.75, 197.25)
+scale = Vector2(4.99219, 4.49219)
+texture = ExtResource("1_iaef4")
+
+[node name="main_menu" type="Node" parent="CanvasLayer"]
+
+[node name="title" type="Label" parent="CanvasLayer/main_menu"]
+offset_left = 28.0
+offset_top = 34.0
+offset_right = 300.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 44
+text = "Warp Wagon"
+
+[node name="start" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -290.0
+offset_top = 144.0
+offset_right = -115.0
+offset_bottom = 190.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Start"
+
+[node name="settings" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -289.0
+offset_top = 207.0
+offset_right = -115.0
+offset_bottom = 252.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Settings"
+
+[node name="exit" type="Button" parent="CanvasLayer/main_menu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 269.0
+offset_right = -115.0
+offset_bottom = 311.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Exit"
+
+[node name="settings" type="Node" parent="CanvasLayer"]
+
+[node name="title" type="Label" parent="CanvasLayer/settings"]
+offset_left = 28.0
+offset_top = 34.0
+offset_right = 300.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 44
+text = "Settings"
+
+[node name="back" type="Button" parent="CanvasLayer/settings"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 269.0
+offset_right = -115.0
+offset_bottom = 311.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Back"
+
+[node name="volume" type="Label" parent="CanvasLayer/settings"]
+anchors_preset = -1
+anchor_left = -0.288
+anchor_top = -3.815
+anchor_right = -0.288
+anchor_bottom = -3.815
+offset_left = 223.32
+offset_top = 1576.4
+offset_right = 321.32
+offset_bottom = 1611.4
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+
+[node name="fullscreen" type="Label" parent="CanvasLayer/settings"]
+offset_left = 37.0
+offset_top = 115.0
+offset_right = 168.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 24
+text = "Full Screen"
+
+[node name="FullScreen" type="CheckBox" parent="CanvasLayer/settings"]
+offset_left = 175.0
+offset_top = 113.0
+offset_right = 199.0
+offset_bottom = 137.0
+scale = Vector2(2, 2)
+
+[node name="Mute" type="CheckBox" parent="CanvasLayer/settings"]
+offset_left = 175.0
+offset_top = 160.0
+offset_right = 199.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
+
+[node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]
+offset_left = 148.0
+offset_top = 217.0
+offset_right = 286.0
+offset_bottom = 233.0
+
+[node name="mute" type="Label" parent="CanvasLayer/settings"]
+anchors_preset = -1
+anchor_left = -0.288
+anchor_top = -3.815
+anchor_right = -0.288
+anchor_bottom = -3.815
+offset_left = 221.32
+offset_top = 1534.4
+offset_right = 319.32
+offset_bottom = 1569.4
+theme_override_font_sizes/font_size = 24
+text = "Mute"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5whv5")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="button_down" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_down"]
+[connection signal="button_up" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_up"]
+[connection signal="button_down" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_down"]
+[connection signal="button_up" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_up"]
+[connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]
