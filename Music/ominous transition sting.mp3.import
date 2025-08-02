@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bh20qiy0s20n"
+path="res://.godot/imported/ominous transition sting.mp3-82a1af9c8ca00d2ba1844c559ab45dc9.mp3str"
+
+[deps]
+
+source_file="res://Music/ominous transition sting.mp3"
+dest_files=["res://.godot/imported/ominous transition sting.mp3-82a1af9c8ca00d2ba1844c559ab45dc9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
