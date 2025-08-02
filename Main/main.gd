@@ -15,11 +15,16 @@ func _ready() -> void:
 
 
 func create_level():
-	for child in $LevelContainer.get_children():
-		child.queue_free()
-	
+	var wagons = []
+	for level in $LevelContainer.get_children():
+		for nodes in level.get_children():
+			for child in nodes.get_children():
+				if child.name.contains("wagon"):
+					wagons.append(child.duplicate())
+		level.queue_free()
+
 	var level_entity = load("res://Level/level.tscn").instantiate()
-	add_child(level_entity)
+	get_child(1).add_child(level_entity)
 	
 	
 	SPAWNER = level_entity.get_node("Spawner")
@@ -27,6 +32,9 @@ func create_level():
 	Globals.createGrid()
 	SPAWNER.spawnEntities()
 	
+	for wagon in wagons:
+		ENTITIES.add_child(wagon)
+					
 	Globals.level_number += 1
 	Globals.current_level += 1
 	if Globals.current_level > Globals.levels.size() - 1:

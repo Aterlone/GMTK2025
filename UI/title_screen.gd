@@ -82,5 +82,3 @@ func _on_mute_button_down() -> void:
 	$AudioStreamPlayer.volume_db = $CanvasLayer/settings/Volume.value
 	muted = false
 	
-func _process(delta: float) -> void:
-	print($AudioStreamPlayer.volume_db)
