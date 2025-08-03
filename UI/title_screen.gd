@@ -49,6 +49,8 @@ func _on_start_pressed() -> void:
 	$CanvasLayer/ColorRect.visible = false
 	$CanvasLayer/Sprite2D.visible = false
 	$CanvasLayer/main_menu/start.text = "Continue"
+	self.get_parent().add_child(load('res://UI/escape_menu.tscn').instantiate())
+	self.queue_free()
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()

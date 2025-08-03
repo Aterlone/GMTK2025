@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqjifh313s0v6"]
+[gd_scene load_steps=10 format=3 uid="uid://cn1ouc3uj6uo4"]
 
-[ext_resource type="Script" uid="uid://clvtsrngtivo2" path="res://UI/title_screen.gd" id="1_coop4"]
-[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="1_iaef4"]
-[ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="3_5whv5"]
+[ext_resource type="Script" uid="uid://dv70bg1mi20gm" path="res://UI/escape_menu.gd" id="1_ocrm7"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="2_qwa2p"]
+[ext_resource type="AudioStream" uid="uid://tsucta17a3u1" path="res://Music/traveller.mp3" id="3_3e74d"]
+[ext_resource type="AudioStream" uid="uid://buaoiood2rqo6" path="res://Music/preparation.mp3" id="3_k81tg"]
+[ext_resource type="AudioStream" uid="uid://c772qk4flvvtc" path="res://Music/greedy bastard.mp3" id="4_pj68k"]
+[ext_resource type="AudioStream" uid="uid://c0fcq72ak4w3j" path="res://Music/charge!.mp3" id="5_3bx7k"]
+[ext_resource type="AudioStream" uid="uid://dtr7h10hc5q8d" path="res://Music/ominous transition sting.mp3" id="5_j4e1r"]
+[ext_resource type="AudioStream" uid="uid://c18d8265hu5u3" path="res://Music/danger ahead!.mp3" id="6_m5xt3"]
+[ext_resource type="AudioStream" uid="uid://cuyt7unlrbw1s" path="res://Music/well, i think you died.mp3" id="9_mcphc"]
 
-[node name="TitleScreen" type="Control"]
+[node name="EscapeMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_coop4")
+script = ExtResource("1_ocrm7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -19,57 +25,13 @@ script = ExtResource("1_coop4")
 offset_right = 641.0
 offset_bottom = 361.0
 color = Color(0.135012, 0.135012, 0.135012, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(434.75, 197.25)
 scale = Vector2(4.99219, 4.49219)
-texture = ExtResource("1_iaef4")
-
-[node name="main_menu" type="Node" parent="CanvasLayer"]
-
-[node name="title" type="Label" parent="CanvasLayer/main_menu"]
-offset_left = 28.0
-offset_top = 34.0
-offset_right = 300.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 44
-text = "Warp Wagon"
-
-[node name="start" type="Button" parent="CanvasLayer/main_menu"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -290.0
-offset_top = 144.0
-offset_right = -115.0
-offset_bottom = 190.0
-grow_horizontal = 2
-size_flags_vertical = 4
-text = "Start"
-
-[node name="settings" type="Button" parent="CanvasLayer/main_menu"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -289.0
-offset_top = 207.0
-offset_right = -115.0
-offset_bottom = 252.0
-grow_horizontal = 2
-size_flags_vertical = 4
-text = "Settings"
-
-[node name="exit" type="Button" parent="CanvasLayer/main_menu"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -288.0
-offset_top = 269.0
-offset_right = -115.0
-offset_bottom = 311.0
-grow_horizontal = 2
-size_flags_vertical = 4
-text = "Exit"
+texture = ExtResource("2_qwa2p")
+hframes = 3
 
 [node name="settings" type="Node" parent="CanvasLayer"]
 
@@ -147,13 +109,28 @@ offset_bottom = 1569.4
 theme_override_font_sizes/font_size = 24
 text = "Mute"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5whv5")
-volume_db = -20.0
+[node name="traveller" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3e74d")
+
+[node name="preparation" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k81tg")
 autoplay = true
 
-[connection signal="button_down" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_down"]
-[connection signal="button_up" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_up"]
-[connection signal="button_down" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_down"]
-[connection signal="button_up" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_up"]
-[connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]
+[node name="ominous_transition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_j4e1r")
+
+[node name="danger_ahead!" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m5xt3")
+
+[node name="charge!" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3bx7k")
+
+[node name="greedy_bastard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pj68k")
+
+[node name="rich" type="AudioStreamPlayer" parent="."]
+
+[node name="died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_mcphc")
+
+[connection signal="pressed" from="CanvasLayer/settings/back" to="." method="_on_back_pressed"]
