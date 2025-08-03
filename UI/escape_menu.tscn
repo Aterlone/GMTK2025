@@ -62,9 +62,9 @@ anchor_top = -3.815
 anchor_right = -0.288
 anchor_bottom = -3.815
 offset_left = 223.32
-offset_top = 1576.4
+offset_top = 1540.4
 offset_right = 321.32
-offset_bottom = 1611.4
+offset_bottom = 1575.4
 theme_override_font_sizes/font_size = 24
 text = "Volume"
 
@@ -83,54 +83,38 @@ offset_right = 199.0
 offset_bottom = 137.0
 scale = Vector2(2, 2)
 
-[node name="Mute" type="CheckBox" parent="CanvasLayer/settings"]
-offset_left = 175.0
-offset_top = 160.0
-offset_right = 199.0
-offset_bottom = 184.0
-scale = Vector2(2, 2)
-
 [node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]
 offset_left = 148.0
-offset_top = 217.0
+offset_top = 181.0
 offset_right = 286.0
-offset_bottom = 233.0
+offset_bottom = 197.0
+value = 50.0
 
-[node name="mute" type="Label" parent="CanvasLayer/settings"]
-anchors_preset = -1
-anchor_left = -0.288
-anchor_top = -3.815
-anchor_right = -0.288
-anchor_bottom = -3.815
-offset_left = 221.32
-offset_top = 1534.4
-offset_right = 319.32
-offset_bottom = 1569.4
-theme_override_font_sizes/font_size = 24
-text = "Mute"
+[node name="music" type="Node" parent="."]
 
-[node name="traveller" type="AudioStreamPlayer" parent="."]
+[node name="traveller" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("3_3e74d")
 
-[node name="preparation" type="AudioStreamPlayer" parent="."]
+[node name="preparation" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("3_k81tg")
-autoplay = true
 
-[node name="ominous_transition" type="AudioStreamPlayer" parent="."]
+[node name="ominous_transition" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("5_j4e1r")
 
-[node name="danger_ahead!" type="AudioStreamPlayer" parent="."]
+[node name="danger_ahead!" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("6_m5xt3")
 
-[node name="charge!" type="AudioStreamPlayer" parent="."]
+[node name="charge!" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("5_3bx7k")
 
-[node name="greedy_bastard" type="AudioStreamPlayer" parent="."]
+[node name="greedy_bastard" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("4_pj68k")
 
-[node name="rich" type="AudioStreamPlayer" parent="."]
+[node name="rich" type="AudioStreamPlayer" parent="music"]
 
-[node name="died" type="AudioStreamPlayer" parent="."]
+[node name="died" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("9_mcphc")
 
 [connection signal="pressed" from="CanvasLayer/settings/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]
