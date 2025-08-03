@@ -7,11 +7,12 @@ var ENTITIES;
 var clock = 0
 
 var trees_being_mined = []
+var started = false
 
 func _ready() -> void:
 	window()
 	create_level()
-
+	started = true
 
 func create_level():
 	var wagons = []
@@ -24,6 +25,9 @@ func create_level():
 
 	var level_entity = load("res://Level/level.tscn").instantiate()
 	get_child(1).add_child(level_entity)
+	
+	if started:
+		$EscapeMenu.level_change()
 	
 	
 	SPAWNER = level_entity.get_node("Spawner")

@@ -109,7 +109,6 @@ stream = ExtResource("5_3bx7k")
 
 [node name="greedy_bastard" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("4_pj68k")
-autoplay = true
 
 [node name="rich" type="AudioStreamPlayer" parent="music"]
 
