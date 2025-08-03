@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn1ouc3uj6uo4"]
+[gd_scene load_steps=11 format=3 uid="uid://cn1ouc3uj6uo4"]
 
 [ext_resource type="Script" uid="uid://dv70bg1mi20gm" path="res://UI/escape_menu.gd" id="1_ocrm7"]
 [ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="2_qwa2p"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dtr7h10hc5q8d" path="res://Music/ominous transition sting.mp3" id="5_j4e1r"]
 [ext_resource type="AudioStream" uid="uid://c18d8265hu5u3" path="res://Music/danger ahead!.mp3" id="6_m5xt3"]
 [ext_resource type="AudioStream" uid="uid://cuyt7unlrbw1s" path="res://Music/well, i think you died.mp3" id="9_mcphc"]
+[ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="10_j4e1r"]
 
 [node name="EscapeMenu" type="Control"]
 layout_mode = 3
@@ -114,6 +115,9 @@ stream = ExtResource("4_pj68k")
 
 [node name="died" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("9_mcphc")
+
+[node name="main_theme" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("10_j4e1r")
 
 [connection signal="pressed" from="CanvasLayer/settings/back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_toggled"]

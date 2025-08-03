@@ -12,7 +12,8 @@ func _ready() -> void:
 	$CanvasLayer/Sprite2D.visible = false
 	for child in $music.get_children():
 		child.volume_db = -20
-	$music/preparation.playing = true
+		
+	level_change()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
@@ -22,9 +23,11 @@ func _input(event: InputEvent) -> void:
 			child.visible = false
 		$CanvasLayer/ColorRect.visible = true
 		$CanvasLayer/Sprite2D.visible = true
+		
 		for child in $music.get_children():
 			child.stream_paused = true
-		
+		$music/main_theme.playing = true
+
 		play = false
 		
 func _on_back_pressed() -> void:
@@ -34,8 +37,11 @@ func _on_back_pressed() -> void:
 		child.visible = true
 	$CanvasLayer/ColorRect.visible = false
 	$CanvasLayer/Sprite2D.visible = false
+	
 	for child in $music.get_children():
 		child.stream_paused = false
+	$music/main_theme.playing = false
+
 	play = true
 
 func _on_volume_value_changed(value: float) -> void:
@@ -49,10 +55,13 @@ func _on_full_screen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func _process(float) -> void:
-	if not ominous_once and not $music/preparation.playing and play == true:
-		$music/ominous_transition.playing = true
-		ominous_once = true
+	if not $music/traveller.playing:
+		$music/preparation.stream_paused = false
 
+		if not ominous_once and not $music/preparation.playing and play == true:
+			$music/ominous_transition.playing = true
+			ominous_once = true
+			
 # When swapping to battle phase wait until enemies come onto screen.
 func waiting_for_battle():
 	if (not ominous_once or $music/ominous_transition.playing) and play == true:
@@ -79,5 +88,8 @@ func level_change():
 	$music/greedy_bastard.playing = false
 	$music/greedy_bastard.stream.loop = false
 	
+	$music/traveller.playing = true
 	$music/preparation.playing = true
+	$music/preparation.stream_paused = true
+
 	ominous_once = false
