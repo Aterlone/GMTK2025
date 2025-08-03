@@ -161,4 +161,7 @@ func getGridIndex(origin):
 
 
 func getIndexFromGlobal(position_global):
-	return getGridIndex(getGridPosition(position_global))
+	var grid_index = getGridIndex(getGridPosition(position_global))
+	grid_index.x = clamp(int(grid_index.x), 0, Globals.GRID.size() - 1)
+	grid_index.y = clamp(int(grid_index.y), 0, Globals.GRID[grid_index.x].size() - 1)
+	return grid_index

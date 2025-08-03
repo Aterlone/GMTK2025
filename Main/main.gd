@@ -66,3 +66,13 @@ func has_builders():
 
 func _process(delta: float) -> void:
 	Globals.has_builder = has_builders()
+	delete_all_except_main_and_globals()
+	
+func delete_all_except_main_and_globals():
+	var root = get_tree().get_root()
+	var main = root.get_node("Main")  # Replace "Main" with your main scene node name
+	var globals = root.get_node("Globals")  # Replace with your autoload name if different
+
+	for node in root.get_children():
+		if node != main and node != globals:
+			node.queue_free()
