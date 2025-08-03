@@ -118,9 +118,9 @@ func _physics_process(delta: float) -> void:
 	
 	var grid_index = Globals.getIndexFromGlobal(get_global_mouse_position())
 
-	var grid_value = Globals.GRID[grid_index.x][grid_index.y]
+	#var grid_value = Globals.GRID[grid_index.x][grid_index.y]
 
-	$Label.text = str(grid_value)
+	$Label.text = str(grid_index)
 	
 	placer_graphic()
 	

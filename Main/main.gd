@@ -7,17 +7,11 @@ var ENTITIES;
 var clock = 0
 
 var trees_being_mined = []
-var started = false
-
-func _ready() -> void:
-	window()
-	create_level()
-	started = true
+var in_game = false
 
 
 func create_level():
 	var wagons = []
-	Globals.gold_count = 0
 	
 	for level in $LevelContainer.get_children():
 		for nodes in level.get_children():
@@ -27,10 +21,9 @@ func create_level():
 		level.queue_free()
 
 	var level_entity = load("res://Level/level.tscn").instantiate()
-	get_child(1).add_child(level_entity)
+	$LevelContainer.add_child(level_entity)
 	
-	if started:
-		$EscapeMenu.level_change()
+	##$EscapeMenu.level_change()
 	
 	
 	SPAWNER = level_entity.get_node("Spawner")
@@ -42,7 +35,7 @@ func create_level():
 		ENTITIES.add_child(wagon)
 		var grid_pos = $LevelContainer.get_child(0).get_child(3).getGridIndex(wagon.position)
 		Globals.GRID[grid_pos.x][grid_pos.y] = wagon
-			
+	
 	Globals.level_number += 1
 	Globals.current_level += 1
 	if Globals.current_level > Globals.levels.size() - 1:
@@ -65,8 +58,25 @@ func has_builders():
 	return false
 
 
+func has_gold():
+	for column in Globals.GRID:
+		for item in column:
+			if item != null:
+				if "resource_type" in item:
+					if item.resource_type == Globals.resource_types.GOLD:
+						return true
+	return false
+
+
 func _process(delta: float) -> void:
 	Globals.has_builder = has_builders()
+	
+	in_game = $LevelContainer.get_children().size() > 0
+	
+	if in_game:
+		if !has_gold():
+			create_level()
+	
 	##delete_all_except_main_and_globals()
 
 

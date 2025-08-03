@@ -26,6 +26,10 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	visible = Globals.MAIN.in_game
+	
+	
 	var resources = Globals.resource_quantities
 	$Main/HUD/Wood.text = "x" + str(resources[Globals.resource_types.WOOD]) + ""
 	$Main/HUD/Gold.text = "x" + str(resources[Globals.resource_types.GOLD]) + ""

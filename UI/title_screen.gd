@@ -17,9 +17,6 @@ func _ready() -> void:
 	)
 	
 	switch_tab("menu")
-	
-	for child in $'../UI'.get_children():
-		child.visible = false
 
 
 func switch_tab(tab_name):
@@ -28,11 +25,11 @@ func switch_tab(tab_name):
 
 
 func _on_start_pressed() -> void:
-	switch_tab(null)
-	
-	$'../UI'.visible = true
-	
+	#$'../UI'.visible = true
 	get_parent().add_child(load('res://UI/escape_menu.tscn').instantiate())
+	
+	get_parent().create_level()
+	
 	call_deferred("queue_free")
 
 

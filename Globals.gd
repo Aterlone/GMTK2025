@@ -50,8 +50,8 @@ var wagon_data = {
 
 var place_type: wagon_types = wagon_types.NONE
 
-var GRID_WIDTH: int = 20
-var GRID_HEIGHT: int = 20
+var GRID_WIDTH: int = 19
+var GRID_HEIGHT: int = 11
 var GRID = []
 
 var placing = false
@@ -70,9 +70,7 @@ var is_day = false
 
 var level_number = 0
 
-var gold_count = 0
-
-# Create a grid which can ahve tiles placed on it.
+# Create a grid which can have tiles placed on it.
 func createGrid():
 	GRID = []
 	const CENTER_MIN = 6
@@ -81,24 +79,36 @@ func createGrid():
 	for x in range(Globals.GRID_WIDTH):
 		var column = []
 		for y in range(Globals.GRID_HEIGHT):
+			column.append(null)
 			var bonus = abs((y * x) - 180) / 180.0
 			var threshold = 1.6 - bonus
 			var in_outer_area = (x < CENTER_MIN or x > CENTER_MAX or y < CENTER_MIN or y > CENTER_MAX)
 			
 			if randf_range(0.0, threshold) < 0.2 and in_outer_area:
 				if randf_range(0.0,1.0) > 0.25:
-					column.append("tree")
-				else:
-					if randf_range(0.0, 1.0) > 0.8:
-						if gold_count <= 3 * (level_number+1):
-							column.append("gold")
-							gold_count += 1
-						else:
-							column.append(null)
-			else:
-				column.append(null)
+					column[y] = "tree"
 		
 		Globals.GRID.append(column)
+	
+	# spawn gold
+	var gold_count = 0
+	var gold_max = 3 * (level_number+1)
+	while gold_count < gold_max:
+		
+		## randomly scatter (gold_count) gold piles around the map
+		var rand_index = Vector2(
+			randi_range(0, GRID_WIDTH - 1),
+			randi_range(0, GRID_HEIGHT - 1)
+		)
+		while GRID[rand_index.x][rand_index.y] != null:
+			rand_index = Vector2(
+				randi_range(0, GRID_WIDTH - 1),
+				randi_range(0, GRID_HEIGHT - 1)
+			)
+		
+		GRID[rand_index.x][rand_index.y] = "gold"
+		
+		gold_count += 1
 
 
 # Snapped grid origin
@@ -153,7 +163,6 @@ func getGridIndex(origin):
 	grid_coords.y = ceil(grid_coords.y)
 	grid_coords -= Vector2(1,1)
 	
-	# If larger than map set to grid_size-1
 	grid_coords.x = clamp(grid_coords.x, 0, Globals.GRID_WIDTH - 1)
 	grid_coords.y = clamp(grid_coords.y, 0, Globals.GRID_HEIGHT - 1)
 	
@@ -161,7 +170,4 @@ func getGridIndex(origin):
 
 
 func getIndexFromGlobal(position_global):
-	var grid_index = getGridIndex(getGridPosition(position_global))
-	grid_index.x = clamp(int(grid_index.x), 0, Globals.GRID.size() - 1)
-	grid_index.y = clamp(int(grid_index.y), 0, Globals.GRID[grid_index.x].size() - 1)
-	return grid_index
+	return getGridIndex(getGridPosition(position_global))

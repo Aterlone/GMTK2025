@@ -34,7 +34,9 @@ scale = Vector2(4.99219, 4.49219)
 texture = ExtResource("2_qwa2p")
 hframes = 3
 
-[node name="settings" type="Node" parent="CanvasLayer"]
+[node name="settings" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="title" type="Label" parent="CanvasLayer/settings"]
 offset_left = 28.0
@@ -45,6 +47,7 @@ theme_override_font_sizes/font_size = 44
 text = "Settings"
 
 [node name="back" type="Button" parent="CanvasLayer/settings"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -57,6 +60,7 @@ size_flags_vertical = 4
 text = "Back"
 
 [node name="volume" type="Label" parent="CanvasLayer/settings"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.288
 anchor_top = -3.815
