@@ -9,8 +9,8 @@ enum resource_types {
 }
 
 var resource_quantities = {
-	resource_types.WOOD : 50000,
-	resource_types.GOLD : 50000
+	resource_types.WOOD : 500,
+	resource_types.GOLD : 0
 }
 
 enum wagon_types {
@@ -22,26 +22,29 @@ enum wagon_types {
 
 var wagon_data = {
 	Globals.wagon_types.RESOURCE : {
-		"health" : 1,
+		"health" : 2,
 		"color" : Color.BLUE,
 		"cost" : 200,
-		"updateSpeed" : 1.0
+		"updateSpeed" : 1.0,
+		"canMove" : true
 	},
 	Globals.wagon_types.COMBAT : {
-		"health" : 3,
+		"health" : 2,
 		"color" : Color.RED,
 		"cost" : 400,
-		"updateSpeed" : 1.0
+		"updateSpeed" : 1.0,
+		"canMove" : true
 	},
 	Globals.wagon_types.BUILDER : {
 		"health" : 5,
 		"color" : Color.WHITE,
 		"cost" : 100,
+		"canMove" : false
 	},
 	Globals.wagon_types.NONE : {
 		"health" : 0,
 		"color" : Color.WHITE,
-		"cost" : 100000000,
+		"cost" : 100000000
 	}
 }
 
@@ -62,7 +65,7 @@ enum levels {
 	ROBOTS
 }
 
-var current_level = levels.ROBOTS
+var current_level = levels.GOBLINS
 var is_day = false
 
 var level_number = 0
@@ -81,10 +84,10 @@ func createGrid():
 			var in_outer_area = (x < CENTER_MIN or x > CENTER_MAX or y < CENTER_MIN or y > CENTER_MAX)
 			
 			if randf_range(0.0, threshold) < 0.2 and in_outer_area:
-				#if randf_range(0.0,1.0) < 0.25:
+				if randf_range(0.0,1.0) > 0.25:
 					column.append("tree")
-				#else:
-					#column.append("gold")
+				else:
+					column.append("gold")
 			else:
 				column.append(null)
 		

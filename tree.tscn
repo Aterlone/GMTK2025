@@ -88,11 +88,11 @@ _data = {
 &"RESET": SubResource("Animation_gvmkm")
 }
 
-[node name="Tree" type="Sprite2D"]
+[node name="Resource" type="Sprite2D"]
 texture = ExtResource("1_brfkd")
 offset = Vector2(0, -48)
 hframes = 2
-frame = 1
+vframes = 2
 script = ExtResource("1_nnvrw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

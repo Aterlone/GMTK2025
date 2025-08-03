@@ -79,7 +79,7 @@ func getResources():
 func mine():
 	for resource in my_resources:
 		if resource != null:
-			if resource.name.contains("tree"):
+			if "resource_type" in resource:
 				resource.mine()
 				Globals.resource_quantities[resource.resource_type] += randi_range(9, 11)
 
@@ -128,7 +128,9 @@ func attack():
 
 func hurt():
 	$AnimationPlayer.play("Hurt")
-
+	health -= 1
+	if health <= 0:
+		queue_free()
 
 
 ##

@@ -4,6 +4,7 @@ extends Node
 var entity_counter = 0
 var entity_files = {
 	"tree" : load("res://tree.tscn"),
+	"gold" : load("res://tree.tscn"),
 	"wagon" : load("res://Wagons/wagon.tscn")
 }
 
@@ -17,8 +18,9 @@ func spawnEntities():
 	for x in range(Globals.GRID.size()):
 		for y in range(Globals.GRID[x].size()):
 			var item = Globals.GRID[x][y]
-			if item == "tree":
-				spawnEntity("tree", Vector2(x, y))
+			if item != null:
+				if item in "treegold":
+					spawnEntity(item, Vector2(x, y))
 
 
 func tryBuyWagon(entity_type):
@@ -54,6 +56,7 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 		entity = entity_files[entity_key].instantiate()
 		entity.name = entity_key + str(entity_counter) + str(grid_position)
 		entity_counter += 1
+		entity.set_type(entity_key)
 	
 	var game_position = Vector2(
 		(grid_position.x + 1) * 32,
@@ -67,6 +70,9 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 	Globals.GRID[grid_position.x][grid_position.y] = entity
 
 func spawnEnemy():
+	if !$BuildTime.is_stopped():
+		return
+	
 	var screenWidth = 640
 	var screenHeight = 360
 	

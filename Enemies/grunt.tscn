@@ -78,3 +78,6 @@ texture = ExtResource("1_mkgit")
 libraries = {
 &"": SubResource("AnimationLibrary_c7k3i")
 }
+
+[node name="AttackDelay" type="Timer" parent="."]
+autostart = true

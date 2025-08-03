@@ -7,6 +7,7 @@ var targetWagon = null
 
 func _ready() -> void:
 	$AnimationPlayer.play("Walk")
+	$AttackDelay.connect("timeout", timeout)
 
 
 func getNearestWagon():
@@ -39,8 +40,18 @@ func _physics_process(delta: float) -> void:
 	
 	var speed = 0.2
 	
+	if targetWagon.global_position.distance_to(global_position) < 16:
+		return
+	
 	global_position += speed * Vector2(
 		cos($Pointer.rotation),
 		sin($Pointer.rotation),
 		)
+
+
+func timeout():
+	if targetWagon == null:
+		return
 	
+	if targetWagon.global_position.distance_to(global_position) < 16:
+		targetWagon.hurt()
