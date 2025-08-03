@@ -52,7 +52,6 @@ func _process(float) -> void:
 	if not ominous_once and not $music/preparation.playing and play == true:
 		$music/ominous_transition.playing = true
 		ominous_once = true
-	waiting_for_battle()
 
 # When swapping to battle phase wait until enemies come onto screen.
 func waiting_for_battle():
