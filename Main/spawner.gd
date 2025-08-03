@@ -7,7 +7,6 @@ var entity_files = {
 	"wagon" : load("res://Wagons/wagon.tscn")
 }
 
-
 func _ready() -> void:
 	$EnemyDelay.connect("timeout", spawnEnemy)
 	

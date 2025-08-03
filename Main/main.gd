@@ -10,7 +10,6 @@ var trees_being_mined = []
 
 func _ready() -> void:
 	window()
-	
 	create_level()
 
 
@@ -34,7 +33,9 @@ func create_level():
 	
 	for wagon in wagons:
 		ENTITIES.add_child(wagon)
-					
+		var grid_pos = $LevelContainer.get_child(0).get_child(3).getGridIndex(wagon.position)
+		Globals.GRID[grid_pos.x][grid_pos.y] = wagon
+			
 	Globals.level_number += 1
 	Globals.current_level += 1
 	if Globals.current_level > Globals.levels.size() - 1:
