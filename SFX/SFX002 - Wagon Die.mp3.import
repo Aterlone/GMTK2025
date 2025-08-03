@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wqtmx3r7opvo"
+path="res://.godot/imported/SFX002 - Wagon Die.mp3-2adbc4697fa44ecf05a58eea24a62d71.mp3str"
+
+[deps]
+
+source_file="res://SFX/SFX002 - Wagon Die.mp3"
+dest_files=["res://.godot/imported/SFX002 - Wagon Die.mp3-2adbc4697fa44ecf05a58eea24a62d71.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

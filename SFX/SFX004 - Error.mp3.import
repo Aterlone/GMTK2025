@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://p7glckq7brty"
+path="res://.godot/imported/SFX004 - Error.mp3-b77c83d94054cd6af0e02b9df5257d35.mp3str"
+
+[deps]
+
+source_file="res://SFX/SFX004 - Error.mp3"
+dest_files=["res://.godot/imported/SFX004 - Error.mp3-b77c83d94054cd6af0e02b9df5257d35.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

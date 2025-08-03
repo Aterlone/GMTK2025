@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b5ms7p64qwu2j"
+path="res://.godot/imported/SFX005 - Treefell.mp3-6192d9decb9a3c8282c7910541784ae8.mp3str"
+
+[deps]
+
+source_file="res://SFX/SFX005 - Treefell.mp3"
+dest_files=["res://.godot/imported/SFX005 - Treefell.mp3-6192d9decb9a3c8282c7910541784ae8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
