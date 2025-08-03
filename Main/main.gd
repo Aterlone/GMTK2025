@@ -16,6 +16,8 @@ func _ready() -> void:
 
 func create_level():
 	var wagons = []
+	Globals.gold_count = 0
+	
 	for level in $LevelContainer.get_children():
 		for nodes in level.get_children():
 			for child in nodes.get_children():

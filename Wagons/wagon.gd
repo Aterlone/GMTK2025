@@ -61,7 +61,6 @@ func _physics_process(delta: float) -> void:
 func getValueAtIndex(x, y):
 	return Globals.GRID[x][y]
 
-
 func getResources():
 	my_resources = []
 	var grid_index = Globals.getIndexFromGlobal(global_position)
@@ -81,7 +80,7 @@ func mine():
 		if resource != null:
 			if "resource_type" in resource:
 				resource.mine()
-				Globals.resource_quantities[resource.resource_type] += randi_range(9, 11)
+				Globals.resource_quantities[resource.resource_type] += randi_range(2, 4)
 
 
 func timeout():

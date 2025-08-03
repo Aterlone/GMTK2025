@@ -9,7 +9,7 @@ enum resource_types {
 }
 
 var resource_quantities = {
-	resource_types.WOOD : 500,
+	resource_types.WOOD : 300,
 	resource_types.GOLD : 0
 }
 
@@ -70,6 +70,8 @@ var is_day = false
 
 var level_number = 0
 
+var gold_count = 0
+
 # Create a grid which can ahve tiles placed on it.
 func createGrid():
 	GRID = []
@@ -87,7 +89,12 @@ func createGrid():
 				if randf_range(0.0,1.0) > 0.25:
 					column.append("tree")
 				else:
-					column.append("gold")
+					if randf_range(0.0, 1.0) > 0.8:
+						if gold_count <= 3 * (level_number+1):
+							column.append("gold")
+							gold_count += 1
+						else:
+							column.append(null)
 			else:
 				column.append(null)
 		
