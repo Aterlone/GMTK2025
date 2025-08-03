@@ -23,6 +23,31 @@ func _ready() -> void:
 	$Main/Button.connect(
 		"pressed", Globals.MAIN.create_level
 		)
+		
+	$Main/Button.connect(
+	"pressed", hide_end_run
+	)
+	hide_end_run()
+	$Main/EndRun/Restart.connect("pressed", Globals.MAIN.create_level)
+
+
+func hide_end_run():
+	$Main/EndRun.visible = false
+
+
+func end_run_screen():
+	$Main/EndRun.visible = true
+	
+	var stats = ""
+	stats += "Max Level Reached: " + str(Globals.level_number)
+	stats += "Wood Gathered: " + str(Globals.stats[Globals.resource_types.WOOD])
+	stats += "Gold Gathered: " + str(Globals.stats[Globals.resource_types.GOLD])
+	stats += "Enemies Slain: " + str(Globals.stats["enemiesSlain"])
+	
+	$Main/EndRun/Stats.text = ""
+	
+	
+
 
 
 func _physics_process(delta: float) -> void:

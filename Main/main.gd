@@ -10,8 +10,21 @@ var trees_being_mined = []
 var in_game = false
 
 
+signal run_reset
+
+
+func end_run():
+	for level in $LevelContainer.get_children():
+		level.queue_free()
+	
+	$UI.end_run_screen()
+
+
 func create_level():
+	Globals.resetStats()
+	
 	var wagons = []
+	
 	
 	for level in $LevelContainer.get_children():
 		for nodes in level.get_children():
@@ -19,7 +32,7 @@ func create_level():
 				if child.name.contains("wagon"):
 					wagons.append(child.duplicate())
 		level.queue_free()
-
+	
 	var level_entity = load("res://Level/level.tscn").instantiate()
 	$LevelContainer.add_child(level_entity)
 	

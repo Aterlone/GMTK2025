@@ -25,6 +25,7 @@ func getNearestWagon():
 
 
 func hurt():
+	Globals.stats["enemiesSlain"] += 1
 	queue_free()
 
 

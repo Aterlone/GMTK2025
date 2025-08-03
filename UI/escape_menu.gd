@@ -106,12 +106,10 @@ func _resume_music() -> void:
 		child.stream_paused = false
 
 func _hide_settings() -> void:
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = false
+	$CanvasLayer/settings.visible = false
 
 func _show_settings() -> void:
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = true
+	$CanvasLayer/settings.visible = true
 
 func _hide_ui() -> void:
 	for child in $'../UI'.get_children():

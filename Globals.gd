@@ -8,6 +8,14 @@ enum resource_types {
 	GOLD
 }
 
+
+var stats = {
+	resource_types.WOOD : 0,  # wood gathered
+	resource_types.GOLD : 0,  # gold gathered
+	"enemiesSlain" : 0 
+}
+
+
 var resource_quantities = {
 	resource_types.WOOD : 300,
 	resource_types.GOLD : 0
@@ -69,6 +77,16 @@ var current_level = levels.GOBLINS
 var is_day = false
 
 var level_number = 0
+
+
+func resetStats():
+	stats = {
+		resource_types.WOOD : 0,  # wood gathered
+		resource_types.GOLD : 0,  # gold gathered
+		"enemiesSlain" : 0 
+	}
+
+
 
 # Create a grid which can have tiles placed on it.
 func createGrid():

@@ -59,7 +59,17 @@ func _physics_process(delta: float) -> void:
 
 
 func getValueAtIndex(x, y):
-	return Globals.GRID[x][y]
+	var dx = clamp(x, 0, Globals.GRID_WIDTH - 1)
+	var dy = clamp(y, 0, Globals.GRID_HEIGHT - 1)
+	
+	if x > Globals.GRID_WIDTH - 1:
+		return null
+	if y > Globals.GRID_HEIGHT - 1:
+		return null
+	
+	return Globals.GRID[dx][dy]
+
+
 
 func getResources():
 	my_resources = []
@@ -80,7 +90,9 @@ func mine():
 		if resource != null:
 			if "resource_type" in resource:
 				resource.mine()
-				Globals.resource_quantities[resource.resource_type] += randi_range(2, 4)
+				var amount = randi_range(2, 4)
+				Globals.resource_quantities[resource.resource_type] += amount
+				Globals.stats[resource.resource_type] += amount
 
 
 func timeout():
@@ -129,6 +141,8 @@ func hurt():
 	$AnimationPlayer.play("Hurt")
 	health -= 1
 	if health <= 0:
+		if wagon_type == Globals.wagon_types.BUILDER:
+			Globals.MAIN.end_run
 		queue_free()
 
 
