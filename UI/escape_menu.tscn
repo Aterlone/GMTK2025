@@ -1,0 +1,120 @@
+[gd_scene load_steps=10 format=3 uid="uid://cn1ouc3uj6uo4"]
+
+[ext_resource type="Script" uid="uid://dv70bg1mi20gm" path="res://UI/escape_menu.gd" id="1_ocrm7"]
+[ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="2_qwa2p"]
+[ext_resource type="AudioStream" uid="uid://tsucta17a3u1" path="res://Music/traveller.mp3" id="3_3e74d"]
+[ext_resource type="AudioStream" uid="uid://buaoiood2rqo6" path="res://Music/preparation.mp3" id="3_k81tg"]
+[ext_resource type="AudioStream" uid="uid://c772qk4flvvtc" path="res://Music/greedy bastard.mp3" id="4_pj68k"]
+[ext_resource type="AudioStream" uid="uid://c0fcq72ak4w3j" path="res://Music/charge!.mp3" id="5_3bx7k"]
+[ext_resource type="AudioStream" uid="uid://dtr7h10hc5q8d" path="res://Music/ominous transition sting.mp3" id="5_j4e1r"]
+[ext_resource type="AudioStream" uid="uid://c18d8265hu5u3" path="res://Music/danger ahead!.mp3" id="6_m5xt3"]
+[ext_resource type="AudioStream" uid="uid://cuyt7unlrbw1s" path="res://Music/well, i think you died.mp3" id="9_mcphc"]
+
+[node name="EscapeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ocrm7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 641.0
+offset_bottom = 361.0
+color = Color(0.135012, 0.135012, 0.135012, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(434.75, 197.25)
+scale = Vector2(4.99219, 4.49219)
+texture = ExtResource("2_qwa2p")
+hframes = 3
+
+[node name="settings" type="Node" parent="CanvasLayer"]
+
+[node name="title" type="Label" parent="CanvasLayer/settings"]
+offset_left = 28.0
+offset_top = 34.0
+offset_right = 300.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 44
+text = "Settings"
+
+[node name="back" type="Button" parent="CanvasLayer/settings"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 269.0
+offset_right = -115.0
+offset_bottom = 311.0
+grow_horizontal = 2
+size_flags_vertical = 4
+text = "Back"
+
+[node name="volume" type="Label" parent="CanvasLayer/settings"]
+anchors_preset = -1
+anchor_left = -0.288
+anchor_top = -3.815
+anchor_right = -0.288
+anchor_bottom = -3.815
+offset_left = 223.32
+offset_top = 1540.4
+offset_right = 321.32
+offset_bottom = 1575.4
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+
+[node name="fullscreen" type="Label" parent="CanvasLayer/settings"]
+offset_left = 37.0
+offset_top = 115.0
+offset_right = 168.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 24
+text = "Full Screen"
+
+[node name="FullScreen" type="CheckBox" parent="CanvasLayer/settings"]
+offset_left = 175.0
+offset_top = 113.0
+offset_right = 199.0
+offset_bottom = 137.0
+scale = Vector2(2, 2)
+
+[node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]
+offset_left = 148.0
+offset_top = 181.0
+offset_right = 286.0
+offset_bottom = 197.0
+value = 50.0
+
+[node name="music" type="Node" parent="."]
+
+[node name="traveller" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("3_3e74d")
+
+[node name="preparation" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("3_k81tg")
+
+[node name="ominous_transition" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("5_j4e1r")
+
+[node name="danger_ahead!" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("6_m5xt3")
+
+[node name="charge!" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("5_3bx7k")
+
+[node name="greedy_bastard" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("4_pj68k")
+
+[node name="rich" type="AudioStreamPlayer" parent="music"]
+
+[node name="died" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("9_mcphc")
+
+[connection signal="pressed" from="CanvasLayer/settings/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]

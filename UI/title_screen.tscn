@@ -24,6 +24,7 @@ color = Color(0.135012, 0.135012, 0.135012, 1)
 position = Vector2(434.75, 197.25)
 scale = Vector2(4.99219, 4.49219)
 texture = ExtResource("1_iaef4")
+hframes = 3
 
 [node name="main_menu" type="Node" parent="CanvasLayer"]
 
@@ -40,9 +41,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -290.0
-offset_top = 144.0
+offset_top = 117.0
 offset_right = -115.0
-offset_bottom = 190.0
+offset_bottom = 163.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Start"
@@ -52,9 +53,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -289.0
-offset_top = 207.0
+offset_top = 182.0
 offset_right = -115.0
-offset_bottom = 252.0
+offset_bottom = 227.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Settings"
@@ -64,9 +65,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -288.0
-offset_top = 269.0
+offset_top = 246.0
 offset_right = -115.0
-offset_bottom = 311.0
+offset_bottom = 288.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Exit"
@@ -86,9 +87,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -288.0
-offset_top = 269.0
+offset_top = 245.0
 offset_right = -115.0
-offset_bottom = 311.0
+offset_bottom = 287.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Back"
@@ -100,9 +101,9 @@ anchor_top = -3.815
 anchor_right = -0.288
 anchor_bottom = -3.815
 offset_left = 223.32
-offset_top = 1576.4
+offset_top = 1541.4
 offset_right = 321.32
-offset_bottom = 1611.4
+offset_bottom = 1576.4
 theme_override_font_sizes/font_size = 24
 text = "Volume"
 
@@ -121,38 +122,16 @@ offset_right = 199.0
 offset_bottom = 137.0
 scale = Vector2(2, 2)
 
-[node name="Mute" type="CheckBox" parent="CanvasLayer/settings"]
-offset_left = 175.0
-offset_top = 160.0
-offset_right = 199.0
-offset_bottom = 184.0
-scale = Vector2(2, 2)
-
 [node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]
 offset_left = 148.0
-offset_top = 217.0
+offset_top = 182.0
 offset_right = 286.0
-offset_bottom = 233.0
-
-[node name="mute" type="Label" parent="CanvasLayer/settings"]
-anchors_preset = -1
-anchor_left = -0.288
-anchor_top = -3.815
-anchor_right = -0.288
-anchor_bottom = -3.815
-offset_left = 221.32
-offset_top = 1534.4
-offset_right = 319.32
-offset_bottom = 1569.4
-theme_override_font_sizes/font_size = 24
-text = "Mute"
+offset_bottom = 198.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5whv5")
 volume_db = -20.0
+autoplay = true
 
-[connection signal="button_down" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_down"]
-[connection signal="button_up" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_button_up"]
-[connection signal="button_down" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_down"]
-[connection signal="button_up" from="CanvasLayer/settings/Mute" to="." method="_on_mute_button_up"]
+[connection signal="toggled" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]
