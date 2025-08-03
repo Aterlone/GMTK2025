@@ -6,11 +6,10 @@ var is_grunt = true
 var targetWagon = null
 
 func _ready() -> void:
-	match Globals.current_level:
-		Globals.levels.GOBLINS:
-			$GoblinA.frame = 0
-		Globals.levels.ROBOTS:
-			$GoblinA.frame = 1
+	if Globals.current_level == Globals.levels.GOBLINS:
+		$GoblinA.frame = 0
+	else:
+		$GoblinA.frame = 1
 	
 	
 	$AnimationPlayer.play("Walk")
@@ -37,7 +36,11 @@ func hurt():
 
 
 func _physics_process(delta: float) -> void:
-	
+	#print(Globals.level_number)
+	if Globals.level_number % 2 == 0:
+		$GoblinA.frame = 0
+	else:
+		$GoblinA.frame = 1
 	
 	getNearestWagon()
 	

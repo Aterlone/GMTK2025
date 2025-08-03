@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var life: int = 1
+@export var life: int = 15
 
 
 var resource_type = Globals.resource_types.WOOD

@@ -28,7 +28,14 @@ func _ready() -> void:
 	"pressed", hide_end_run
 	)
 	hide_end_run()
-	$Main/EndRun/Restart.connect("pressed", Globals.MAIN.create_level)
+	$Main/EndRun/Restart.connect("pressed", restart)
+
+
+func restart():
+	Globals.MAIN.create_level()
+	$Main/EndRun.visible =false
+	Globals.current_level = Globals.levels.GOBLINS
+	Globals.level_number = 1
 
 
 func hide_end_run():
@@ -42,11 +49,13 @@ func end_run_screen():
 	
 	var stats = ""
 	stats += "Max Level Reached: " + str(Globals.level_number)
-	stats += "Wood Gathered: " + str(Globals.stats[Globals.resource_types.WOOD])
-	stats += "Gold Gathered: " + str(Globals.stats[Globals.resource_types.GOLD])
-	stats += "Enemies Slain: " + str(Globals.stats["enemiesSlain"])
+	stats += "\nWood Gathered: " + str(Globals.stats[Globals.resource_types.WOOD])
+	stats += "\nGold Gathered: " + str(Globals.stats[Globals.resource_types.GOLD])
+	stats += "\nEnemies Slain: " + str(Globals.stats["enemiesSlain"])
 	
-	$Main/EndRun/Stats.text = ""
+	
+	
+	$Main/EndRun/Stats.text = stats
 	
 	
 
@@ -54,7 +63,7 @@ func end_run_screen():
 
 func _physics_process(delta: float) -> void:
 	
-	visible = Globals.MAIN.in_game
+	visible = Globals.MAIN.in_game or $Main/EndRun.visible
 	
 	
 	var resources = Globals.resource_quantities

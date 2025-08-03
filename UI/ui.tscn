@@ -140,6 +140,16 @@ theme_override_font_sizes/font_size = 25
 text = "Objective: Mine all Gold!"
 horizontal_alignment = 1
 
+[node name="Objective2" type="Label" parent="Main/HUD"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 40.0
+offset_right = 452.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 25
+text = "Objective: Mine all Gold!"
+horizontal_alignment = 1
+
 [node name="Button" type="Button" parent="Main"]
 visible = false
 layout_mode = 0

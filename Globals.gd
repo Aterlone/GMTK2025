@@ -73,7 +73,7 @@ enum levels {
 	ROBOTS
 }
 
-var current_level = levels.GOBLINS
+var current_level = levels.ROBOTS
 var is_day = false
 
 var level_number = 0
@@ -90,6 +90,11 @@ func resetStats():
 
 # Create a grid which can have tiles placed on it.
 func createGrid():
+	resource_quantities = {
+		resource_types.WOOD : 300,
+		resource_types.GOLD : 0
+	}
+	
 	GRID = []
 	const CENTER_MIN = 6
 	const CENTER_MAX = 14
