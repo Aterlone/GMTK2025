@@ -51,6 +51,7 @@ icon = ExtResource("4_c7tqi")
 expand_icon = true
 
 [node name="WagonBuilder" type="Button" parent="Main/Buttons"]
+visible = false
 layout_mode = 0
 offset_left = 584.0
 offset_top = 166.0
@@ -66,6 +67,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="builder_is_builder" type="Label" parent="Main/HUD"]
+visible = false
 layout_mode = 0
 offset_left = 586.0
 offset_top = 198.0
@@ -139,13 +141,14 @@ text = "Objectives"
 [node name="Objective2" type="Label" parent="Main/HUD"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 32.0
-offset_right = 187.0
-offset_bottom = 47.0
+offset_top = 30.0
+offset_right = 194.0
+offset_bottom = 45.0
 theme_override_font_sizes/font_size = 16
 text = "- MINE ALL GOLD! (0 more)"
 
 [node name="builder_cost" type="Label" parent="Main/HUD"]
+visible = false
 offset_left = 574.0
 offset_top = 213.0
 offset_right = 637.0
