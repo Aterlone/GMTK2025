@@ -44,7 +44,11 @@ func _on_start_pressed() -> void:
 	self.queue_free()
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	pass
+	#if OS.has_feature("HTML5"):
+		#JavaScriptBridge.eval("window.location.reload();", false)
+	#else:
+		#get_tree().quit()
 
 func _on_back_pressed() -> void:
 	for child in $CanvasLayer/settings.get_children():

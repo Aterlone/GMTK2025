@@ -2,6 +2,9 @@ extends Control
 
 var ominous_once = false
 var play = true
+var after_charge_set = false
+var charge_played = false
+var battle_waiting_once = false
 
 func _ready() -> void:
 	for child in $CanvasLayer/settings.get_children():
@@ -61,6 +64,13 @@ func _process(float) -> void:
 		if not ominous_once and not $music/preparation.playing and play == true:
 			$music/ominous_transition.playing = true
 			ominous_once = true
+		
+		if ominous_once and not battle_waiting_once and not $music/ominous_transition.playing:
+			get_tree().get_root().get_child(1).get_child(2).waiting_for_battle()
+			battle_waiting_once = true
+
+	if after_charge_set:
+		after_charge()
 			
 # When swapping to battle phase wait until enemies come onto screen.
 func waiting_for_battle():
@@ -72,9 +82,11 @@ func waiting_for_battle():
 
 # When enemies come into screen
 func charge():
+	$music/danger_ahead.playing = false
 	$music/danger_ahead.stream.loop = false
-	$music/danger_ahead.loop = false
-	$music/charge.stream.loop = true
+	$music/charge.playing = true
+	charge_played = true
+	after_charge_set = true
 
 # Play GReedy Bastard after charge has been played.
 func after_charge():
@@ -82,6 +94,7 @@ func after_charge():
 		return false
 	$music/greedy_bastard.playing = true
 	$music/greedy_bastard.stream.loop = true
+	after_charge_set = false
 	return true
 
 func level_change():
@@ -93,3 +106,5 @@ func level_change():
 	$music/preparation.stream_paused = true
 
 	ominous_once = false
+	charge_played = false
+	battle_waiting_once = false

@@ -72,7 +72,9 @@ func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon
 func spawnEnemy():
 	if !$BuildTime.is_stopped():
 		return
-	
+	if not get_tree().get_root().get_child(1).get_child(2).charge_played:
+		get_tree().get_root().get_child(1).get_child(2).charge()
+
 	var screenWidth = 640
 	var screenHeight = 360
 	
