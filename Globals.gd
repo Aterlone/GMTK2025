@@ -25,12 +25,13 @@ var wagon_data = {
 		"health" : 1,
 		"color" : Color.BLUE,
 		"cost" : 200,
-		"mineSpeed" : 1.0
+		"updateSpeed" : 1.0
 	},
 	Globals.wagon_types.COMBAT : {
 		"health" : 3,
 		"color" : Color.RED,
 		"cost" : 400,
+		"updateSpeed" : 1.0
 	},
 	Globals.wagon_types.BUILDER : {
 		"health" : 5,

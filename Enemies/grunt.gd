@@ -1,6 +1,7 @@
 extends Node2D
 
 
+var is_grunt = true
 
 var targetWagon = null
 
@@ -22,6 +23,10 @@ func getNearestWagon():
 	targetWagon = wagon_positions[keys[0]]
 
 
+func hurt():
+	queue_free()
+
+
 func _physics_process(delta: float) -> void:
 	
 	
@@ -38,3 +43,4 @@ func _physics_process(delta: float) -> void:
 		cos($Pointer.rotation),
 		sin($Pointer.rotation),
 		)
+	
