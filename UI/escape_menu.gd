@@ -43,16 +43,14 @@ func _on_full_screen_toggled(toggled_on: bool) -> void:
 	)
 
 func _process(_delta: float) -> void:
-	if not $music/traveller.playing and play:
-		$music/preparation.stream_paused = false
 
-		if not ominous_once and not $music/preparation.playing:
-			$music/ominous_transition.playing = true
-			ominous_once = true
-		
-		if ominous_once and not battle_waiting_once and not $music/ominous_transition.playing:
-			get_tree().get_root().get_child(1).get_child(2).waiting_for_battle()
-			battle_waiting_once = true
+	if not ominous_once and not $music/preparation.playing and play:
+		$music/ominous_transition.playing = true
+		ominous_once = true
+	
+	if ominous_once and not battle_waiting_once and not $music/ominous_transition.playing:
+		get_tree().get_root().get_child(1).get_child(2).waiting_for_battle()
+		battle_waiting_once = true
 
 	if after_charge_set and play:
 		after_charge()
@@ -85,9 +83,9 @@ func level_change() -> void:
 	$music/greedy_bastard.playing = false
 	$music/greedy_bastard.stream.loop = false
 
-	$music/traveller.playing = true
+	#$music/traveller.playing = true
 	$music/preparation.playing = true
-	$music/preparation.stream_paused = true
+	#$music/preparation.stream_paused = true
 
 	ominous_once = false
 	charge_played = false
