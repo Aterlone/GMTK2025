@@ -59,12 +59,18 @@ func has_builders():
 
 
 func has_gold():
+	var count = 0
 	for column in Globals.GRID:
 		for item in column:
 			if item != null:
 				if "resource_type" in item:
 					if item.resource_type == Globals.resource_types.GOLD:
-						return true
+						count += 1
+	
+	$UI/Main/HUD/Objective2.text = "- MINE ALL GOLD! (" + str(count) + " more)"
+	if count:
+		return true
+		
 	return false
 
 
