@@ -101,14 +101,15 @@ stream = ExtResource("3_k81tg")
 [node name="ominous_transition" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("5_j4e1r")
 
-[node name="danger_ahead!" type="AudioStreamPlayer" parent="music"]
+[node name="danger_ahead" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("6_m5xt3")
 
-[node name="charge!" type="AudioStreamPlayer" parent="music"]
+[node name="charge" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("5_3bx7k")
 
 [node name="greedy_bastard" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("4_pj68k")
+autoplay = true
 
 [node name="rich" type="AudioStreamPlayer" parent="music"]
 
