@@ -25,6 +25,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="title" type="Label" parent="CanvasLayer/main_menu"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 34.0
 offset_right = 300.0
@@ -78,6 +79,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="title" type="Label" parent="CanvasLayer/settings"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 34.0
 offset_right = 300.0
@@ -113,6 +115,7 @@ theme_override_font_sizes/font_size = 24
 text = "Volume"
 
 [node name="fullscreen" type="Label" parent="CanvasLayer/settings"]
+layout_mode = 0
 offset_left = 37.0
 offset_top = 115.0
 offset_right = 168.0
@@ -121,6 +124,7 @@ theme_override_font_sizes/font_size = 24
 text = "Full Screen"
 
 [node name="FullScreen" type="CheckBox" parent="CanvasLayer/settings"]
+layout_mode = 0
 offset_left = 175.0
 offset_top = 113.0
 offset_right = 199.0
@@ -128,6 +132,7 @@ offset_bottom = 137.0
 scale = Vector2(2, 2)
 
 [node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]
+layout_mode = 0
 offset_left = 148.0
 offset_top = 182.0
 offset_right = 286.0

@@ -30,9 +30,9 @@ func _physics_process(delta: float) -> void:
 	$Main/HUD/Wood.text = "x" + str(resources[Globals.resource_types.WOOD]) + ""
 	$Main/HUD/Gold.text = "x" + str(resources[Globals.resource_types.GOLD]) + ""
 	if Globals.has_builder:
-		$Main/HUD/Builders.text = "One Builder!"
+		$Main/HUD/Builders.text = ""
 	else:
-		$Main/HUD/Builders.text = "No Builders!?"
+		$Main/HUD/Builders.text = "No Builders!?\n You have to place one to build other wagons!!!"
 
 func set_placed_wagon(wagon_type):
 	Globals.placing = !Globals.placing
