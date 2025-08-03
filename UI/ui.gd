@@ -41,4 +41,3 @@ func _physics_process(delta: float) -> void:
 func set_placed_wagon(wagon_type):
 	Globals.placing = !Globals.placing
 	Globals.entity_to_place = wagon_type
-	print("This")

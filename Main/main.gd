@@ -23,7 +23,7 @@ func create_level():
 	var level_entity = load("res://Level/level.tscn").instantiate()
 	$LevelContainer.add_child(level_entity)
 	
-	##$EscapeMenu.level_change()
+	$EscapeMenu.level_change()
 	
 	
 	SPAWNER = level_entity.get_node("Spawner")
