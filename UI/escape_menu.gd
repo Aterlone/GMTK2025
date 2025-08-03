@@ -20,6 +20,8 @@ func _input(event: InputEvent) -> void:
 		_hide_ui()
 		_show_overlay()
 		_pause_music()
+		$music/main_theme.playing = true
+		
 		play = false
 
 func _on_back_pressed() -> void:
@@ -27,6 +29,8 @@ func _on_back_pressed() -> void:
 	_show_ui()
 	_hide_overlay()
 	_resume_music()
+	$music/main_theme.playing = false
+	
 	play = true
 
 func _on_volume_value_changed(value: float) -> void:
