@@ -22,25 +22,26 @@ func _ready() -> void:
 	add_child(need_wood)
 
 
-
 func _input(event):
+	# Cancel placing mode with right-click
+	if Globals.placing and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		Globals.placing = false
+		return
+	
 	# Handle placing a new wagon
 	if Globals.placing:
 		if isValidCell(get_global_mouse_position()):
 			if event.is_action_pressed("place"):
 				place_wagon()
 				Globals.placing = false
-				
 
 	# Handle selecting a wagon to move
-	
 	elif event.is_action_pressed("move"):
 		if isValidCell(get_global_mouse_position()):
-			# will skip empty cells
 			return
 		var grid_index = Globals.getIndexFromGlobal(get_global_mouse_position())
 		var grid_value = Globals.GRID[grid_index.x][grid_index.y]
-		
+
 		if grid_value.name.contains("wagon"):
 			if grid_value.mouse_over:
 				selected_wagon = grid_value
@@ -49,7 +50,7 @@ func _input(event):
 	if event.is_action_pressed("place") and selected_wagon != null:
 		if !isValidCell(get_global_mouse_position()):
 			return
-		
+
 		var old_index = Globals.getIndexFromGlobal(selected_wagon.position)
 		Globals.GRID[old_index.x][old_index.y] = null
 

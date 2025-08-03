@@ -73,7 +73,7 @@ enum levels {
 	ROBOTS
 }
 
-var current_level = levels.ROBOTS
+var current_level = levels.GOBLINS
 var is_day = false
 
 var level_number = 0

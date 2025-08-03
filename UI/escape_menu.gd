@@ -82,6 +82,8 @@ func after_charge() -> bool:
 func level_change() -> void:
 	$music/greedy_bastard.playing = false
 	$music/greedy_bastard.stream.loop = false
+	$music/danger_ahead.playing = false
+	$music/danger_ahead.stream.loop = false
 
 	#$music/traveller.playing = true
 	$music/preparation.playing = true

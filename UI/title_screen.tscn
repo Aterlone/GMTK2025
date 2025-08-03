@@ -21,6 +21,7 @@ texture = ExtResource("1_iaef4")
 hframes = 3
 
 [node name="main_menu" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -74,7 +75,6 @@ size_flags_vertical = 4
 text = "Exit"
 
 [node name="settings" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -101,16 +101,10 @@ size_flags_vertical = 4
 text = "Back"
 
 [node name="volume" type="Label" parent="CanvasLayer/settings"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.288
-anchor_top = -3.815
-anchor_right = -0.288
-anchor_bottom = -3.815
-offset_left = 223.32
-offset_top = 1541.4
-offset_right = 321.32
-offset_bottom = 1576.4
+offset_left = 40.0
+offset_top = 176.0
+offset_right = 171.0
+offset_bottom = 211.0
 theme_override_font_sizes/font_size = 24
 text = "Volume"
 
@@ -125,10 +119,10 @@ text = "Full Screen"
 
 [node name="FullScreen" type="CheckBox" parent="CanvasLayer/settings"]
 layout_mode = 0
-offset_left = 175.0
-offset_top = 113.0
-offset_right = 199.0
-offset_bottom = 137.0
+offset_left = 169.0
+offset_top = 108.0
+offset_right = 191.0
+offset_bottom = 132.0
 scale = Vector2(2, 2)
 
 [node name="Volume" type="HScrollBar" parent="CanvasLayer/settings"]

@@ -78,15 +78,16 @@ func spawnEnemy():
 	var screenWidth = 640
 	var screenHeight = 360
 	
-	var random_position = Vector2.ZERO
-	random_position -= 32 * Vector2(1,1)
-	random_position.x += randi_range(0,1) * screenWidth + 32
-	random_position.y += randi_range(0,1) * screenHeight + 32
-	
-	
-	var enemy_entity = load("res://Enemies/grunt.tscn").instantiate()
-	enemy_entity.global_position = random_position
-	Globals.MAIN.ENTITIES.call_deferred("add_child", enemy_entity)
+	for x in range(0, Globals.level_number):
+		var random_position = Vector2.ZERO
+		random_position -= 32 * Vector2(1,1)
+		random_position.x += randi_range(0,1) * screenWidth + 32
+		random_position.y += randi_range(0,1) * screenHeight + 32
+		
+		
+		var enemy_entity = load("res://Enemies/grunt.tscn").instantiate()
+		enemy_entity.global_position = random_position
+		Globals.MAIN.ENTITIES.call_deferred("add_child", enemy_entity)
 	
 	
 	

@@ -47,8 +47,11 @@ func create_level():
 	for wagon in wagons:
 		ENTITIES.add_child(wagon)
 		var grid_pos = $LevelContainer.get_child(0).get_child(3).getGridIndex(wagon.position)
+		if Globals.GRID[grid_pos.x][grid_pos.y] != null:
+			Globals.GRID[grid_pos.x][grid_pos.y].queue_free()
 		Globals.GRID[grid_pos.x][grid_pos.y] = wagon
-	
+		
+		
 	Globals.level_number += 1
 	Globals.current_level += 1
 	if Globals.current_level > Globals.levels.size() - 1:

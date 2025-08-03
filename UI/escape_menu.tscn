@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj6sltu3028tw"]
+[gd_scene load_steps=11 format=3 uid="uid://cn1ouc3uj6uo4"]
 
 [ext_resource type="Script" uid="uid://dv70bg1mi20gm" path="res://UI/escape_menu.gd" id="1_ocrm7"]
 [ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="2_qwa2p"]
@@ -52,10 +52,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -288.0
-offset_top = 269.0
-offset_right = -115.0
-offset_bottom = 311.0
+offset_left = 35.0
+offset_top = 279.0
+offset_right = 208.0
+offset_bottom = 321.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Back"
@@ -67,10 +67,10 @@ anchor_left = -0.288
 anchor_top = -3.815
 anchor_right = -0.288
 anchor_bottom = -3.815
-offset_left = 223.32
-offset_top = 1540.4
-offset_right = 321.32
-offset_bottom = 1575.4
+offset_left = 37.0
+offset_top = 177.0
+offset_right = 135.0
+offset_bottom = 212.0
 theme_override_font_sizes/font_size = 24
 text = "Volume"
 
