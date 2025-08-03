@@ -33,9 +33,9 @@ offset_bottom = 40.0
 [node name="WagonResource" type="Button" parent="Main/Buttons"]
 layout_mode = 0
 offset_left = 584.0
-offset_top = 248.0
+offset_top = 247.0
 offset_right = 632.0
-offset_bottom = 296.0
+offset_bottom = 295.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_hat8c")
 icon = ExtResource("3_nm1m0")
 expand_icon = true
@@ -53,9 +53,9 @@ expand_icon = true
 [node name="WagonBuilder" type="Button" parent="Main/Buttons"]
 layout_mode = 0
 offset_left = 584.0
-offset_top = 192.0
+offset_top = 190.0
 offset_right = 632.0
-offset_bottom = 240.0
+offset_bottom = 238.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_3sbvi")
 icon = ExtResource("5_cbfhl")
 expand_icon = true
@@ -64,6 +64,28 @@ expand_icon = true
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Main/HUD"]
+layout_mode = 0
+offset_left = 586.0
+offset_top = 222.0
+offset_right = 632.0
+offset_bottom = 237.0
+text = "Builder"
+
+[node name="Label2" type="Label" parent="Main/HUD"]
+offset_left = 586.0
+offset_top = 279.0
+offset_right = 632.0
+offset_bottom = 294.0
+text = "Gather"
+
+[node name="Label3" type="Label" parent="Main/HUD"]
+offset_left = 585.0
+offset_top = 337.0
+offset_right = 633.0
+offset_bottom = 352.0
+text = "Combat"
 
 [node name="ResourceIcons" type="Sprite2D" parent="Main/HUD"]
 position = Vector2(544, 24)

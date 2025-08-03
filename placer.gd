@@ -11,7 +11,7 @@ var need_wood: Label = Label.new()
 func _ready() -> void:
 	need_builder.add_theme_color_override("font_color", Color.RED)
 	need_builder.add_theme_font_size_override("font_size", 18)
-	need_builder.text = "Need builder wagon to be placed"
+	need_builder.text = "Need builder."
 	need_builder.visible = false
 	add_child(need_builder)
 	
@@ -161,7 +161,7 @@ func _physics_process(delta: float) -> void:
 
 		if Globals.wagon_data[Globals.entity_to_place]["cost"] > Globals.resource_quantities[Globals.resource_types.WOOD]:
 			need_wood.visible = Globals.placing
-			need_wood.text = "You need " + str(Globals.wagon_data[Globals.entity_to_place]["cost"]) + " wood to build this."
+			need_wood.text = "Need " + str(Globals.wagon_data[Globals.entity_to_place]["cost"]) + " wood."
 			need_wood.global_position = get_global_mouse_position()
 			need_wood.global_position.y -= 80
 			need_wood.global_position.x -= 100
