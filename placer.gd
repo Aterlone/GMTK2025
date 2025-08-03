@@ -5,6 +5,23 @@ var WagonScene := preload("res://Wagons/wagon.tscn")
 var entities: Node
 var placing: Node
 var selected_wagon: Node
+var need_builder: Label = Label.new()
+var need_wood: Label = Label.new()
+
+func _ready() -> void:
+	need_builder.add_theme_color_override("font_color", Color.RED)
+	need_builder.add_theme_font_size_override("font_size", 18)
+	need_builder.text = "Need builder wagon to be placed"
+	need_builder.visible = false
+	add_child(need_builder)
+	
+	need_wood.add_theme_color_override("font_color", Color.RED)
+	need_wood.add_theme_font_size_override("font_size", 18)
+	need_wood.text = "Need more wood to place wagon."
+	need_wood.visible = false
+	add_child(need_wood)
+
+
 
 func _input(event):
 	# Handle placing a new wagon
@@ -13,6 +30,7 @@ func _input(event):
 			if event.is_action_pressed("place"):
 				place_wagon()
 				Globals.placing = false
+				
 
 	# Handle selecting a wagon to move
 	
@@ -134,7 +152,19 @@ func _physics_process(delta: float) -> void:
 			$Wagon.frame = 1
 		Globals.wagon_types.COMBAT:
 			$Wagon.frame = 2
+	if Globals.entity_to_place != Globals.wagon_types.BUILDER and Globals.entity_to_place != Globals.wagon_types.NONE:
+		if not Globals.has_builder:
+			need_builder.visible = Globals.placing
+			need_builder.global_position = get_global_mouse_position()
+			need_builder.global_position.y -= 60
+			need_builder.global_position.x -= 100
 
+		if Globals.wagon_data[Globals.entity_to_place]["cost"] > Globals.resource_quantities[Globals.resource_types.WOOD]:
+			need_wood.visible = Globals.placing
+			need_wood.text = "You need " + str(Globals.wagon_data[Globals.entity_to_place]["cost"]) + " wood to build this."
+			need_wood.global_position = get_global_mouse_position()
+			need_wood.global_position.y -= 80
+			need_wood.global_position.x -= 100
 
 func place_wagon():
 	var grid_index = Globals.getIndexFromGlobal($BaseTileWhite.global_position)
