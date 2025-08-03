@@ -36,6 +36,8 @@ func hide_end_run():
 
 
 func end_run_screen():
+	$Main/EndRun/EndRun.play()
+	
 	$Main/EndRun.visible = true
 	
 	var stats = ""
@@ -66,4 +68,3 @@ func _physics_process(delta: float) -> void:
 func set_placed_wagon(wagon_type):
 	Globals.placing = !Globals.placing
 	Globals.entity_to_place = wagon_type
-	print("This")

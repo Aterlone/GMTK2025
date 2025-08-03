@@ -6,6 +6,13 @@ var is_grunt = true
 var targetWagon = null
 
 func _ready() -> void:
+	match Globals.current_level:
+		Globals.levels.GOBLINS:
+			$GoblinA.frame = 0
+		Globals.levels.ROBOTS:
+			$GoblinA.frame = 1
+	
+	
 	$AnimationPlayer.play("Walk")
 	$AttackDelay.connect("timeout", timeout)
 

@@ -183,8 +183,6 @@ offset_left = 128.0
 offset_top = 128.0
 offset_right = 512.0
 offset_bottom = 256.0
-text = "RUN ENDED!!!!
-Your wagons were overrun!"
 
 [node name="EndRun" type="AudioStreamPlayer" parent="Main/EndRun"]
 stream = ExtResource("7_c7tqi")

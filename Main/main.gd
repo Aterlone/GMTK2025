@@ -36,7 +36,7 @@ func create_level():
 	var level_entity = load("res://Level/level.tscn").instantiate()
 	$LevelContainer.add_child(level_entity)
 	
-	##$EscapeMenu.level_change()
+	$EscapeMenu.level_change()
 	
 	
 	SPAWNER = level_entity.get_node("Spawner")
@@ -72,12 +72,18 @@ func has_builders():
 
 
 func has_gold():
+	var count = 0
 	for column in Globals.GRID:
 		for item in column:
 			if item != null:
 				if "resource_type" in item:
 					if item.resource_type == Globals.resource_types.GOLD:
-						return true
+						count += 1
+	
+	$UI/Main/HUD/Objective2.text = "- MINE ALL GOLD! (" + str(count) + " more)"
+	if count:
+		return true
+		
 	return false
 
 
