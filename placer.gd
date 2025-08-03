@@ -125,7 +125,13 @@ func _physics_process(delta: float) -> void:
 	# Create Placing Wagon Object
 	$Wagon.visible = (Globals.placing)
 	$Wagon.global_position = $BaseTileWhite.global_position
-	$Wagon.modulate = Globals.wagon_data[Globals.entity_to_place]["color"]
+	match Globals.entity_to_place:
+		Globals.wagon_types.BUILDER:
+			$Wagon.frame = 0
+		Globals.wagon_types.RESOURCE:
+			$Wagon.frame = 1
+		Globals.wagon_types.COMBAT:
+			$Wagon.frame = 2
 
 
 func place_wagon():

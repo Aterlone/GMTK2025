@@ -10,6 +10,7 @@ script = ExtResource("1_mdkc6")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
 texture = ExtResource("1_16fkb")
+hframes = 3
 
 [node name="Tree" type="Sprite2D" parent="."]
 visible = false

@@ -29,8 +29,15 @@ func connect_functions():
 
 
 func setup_wagon():
-	$Sprite2D.modulate = Globals.wagon_data[wagon_type]["color"]
 	health = Globals.wagon_data[wagon_type]["health"]
+	
+	match wagon_type:
+		Globals.wagon_types.BUILDER:
+			$Sprite2D.frame = 0
+		Globals.wagon_types.RESOURCE:
+			$Sprite2D.frame = 1
+		Globals.wagon_types.COMBAT:
+			$Sprite2D.frame = 2
 	
 
 func set_mouse(overlapping : bool):

@@ -26,3 +26,4 @@ offset_bottom = 33.0
 z_index = 4096
 texture = ExtResource("3_vwqld")
 offset = Vector2(0, -16)
+hframes = 3
