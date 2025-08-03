@@ -14,6 +14,7 @@ func _ready() -> void:
 	create_level()
 	started = true
 
+
 func create_level():
 	var wagons = []
 	Globals.gold_count = 0
@@ -66,8 +67,9 @@ func has_builders():
 
 func _process(delta: float) -> void:
 	Globals.has_builder = has_builders()
-	delete_all_except_main_and_globals()
-	
+	##delete_all_except_main_and_globals()
+
+
 func delete_all_except_main_and_globals():
 	var root = get_tree().get_root()
 	var main = root.get_node("Main")  # Replace "Main" with your main scene node name

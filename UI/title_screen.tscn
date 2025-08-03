@@ -4,13 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="1_iaef4"]
 [ext_resource type="AudioStream" uid="uid://clqh71tyodnc8" path="res://Music/main theme.mp3" id="3_5whv5"]
 
-[node name="TitleScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TitleScreen" type="CanvasLayer"]
 script = ExtResource("1_coop4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -26,7 +20,9 @@ scale = Vector2(4.99219, 4.49219)
 texture = ExtResource("1_iaef4")
 hframes = 3
 
-[node name="main_menu" type="Node" parent="CanvasLayer"]
+[node name="main_menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
 
 [node name="title" type="Label" parent="CanvasLayer/main_menu"]
 offset_left = 28.0
@@ -37,42 +33,49 @@ theme_override_font_sizes/font_size = 44
 text = "Warp Wagon"
 
 [node name="start" type="Button" parent="CanvasLayer/main_menu"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -290.0
+offset_left = 32.0
 offset_top = 117.0
-offset_right = -115.0
+offset_right = 207.0
 offset_bottom = 163.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Start"
 
 [node name="settings" type="Button" parent="CanvasLayer/main_menu"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -289.0
+offset_left = 33.0
 offset_top = 182.0
-offset_right = -115.0
+offset_right = 207.0
 offset_bottom = 227.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Settings"
 
 [node name="exit" type="Button" parent="CanvasLayer/main_menu"]
+visible = false
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -288.0
+offset_left = 34.0
 offset_top = 246.0
-offset_right = -115.0
+offset_right = 207.0
 offset_bottom = 288.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Exit"
 
-[node name="settings" type="Node" parent="CanvasLayer"]
+[node name="settings" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
 
 [node name="title" type="Label" parent="CanvasLayer/settings"]
 offset_left = 28.0
@@ -83,18 +86,20 @@ theme_override_font_sizes/font_size = 44
 text = "Settings"
 
 [node name="back" type="Button" parent="CanvasLayer/settings"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -288.0
+offset_left = 40.0
 offset_top = 245.0
-offset_right = -115.0
+offset_right = 213.0
 offset_bottom = 287.0
 grow_horizontal = 2
 size_flags_vertical = 4
 text = "Back"
 
 [node name="volume" type="Label" parent="CanvasLayer/settings"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.288
 anchor_top = -3.815
@@ -128,7 +133,7 @@ offset_top = 182.0
 offset_right = 286.0
 offset_bottom = 198.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MainMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_5whv5")
 volume_db = -20.0
 autoplay = true

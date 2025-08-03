@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn1ouc3uj6uo4"]
+[gd_scene load_steps=11 format=3 uid="uid://dj6sltu3028tw"]
 
 [ext_resource type="Script" uid="uid://dv70bg1mi20gm" path="res://UI/escape_menu.gd" id="1_ocrm7"]
 [ext_resource type="Texture2D" uid="uid://dofcvxoa3a3l6" path="res://Art/wagon.png" id="2_qwa2p"]

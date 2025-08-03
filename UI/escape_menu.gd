@@ -14,6 +14,7 @@ func _ready() -> void:
 	_set_music_volume(-20)
 	level_change()
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		_show_settings()

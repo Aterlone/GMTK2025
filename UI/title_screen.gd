@@ -1,66 +1,49 @@
-extends Control
+extends CanvasLayer
 
 var muted: bool = false
 
 func _ready() -> void:
 	$CanvasLayer/main_menu/settings.connect(
-	"pressed", _on_settings_pressed.bind()
+	"pressed", switch_tab.bind("settings")
 	)
 	$CanvasLayer/main_menu/start.connect(
-	"pressed", _on_start_pressed.bind()
+	"pressed", _on_start_pressed
 	)
 	$CanvasLayer/main_menu/exit.connect(
-	"pressed", _on_exit_pressed.bind()
+	"pressed", _on_exit_pressed
 	)
 	$CanvasLayer/settings/back.connect(
-	"pressed", _on_back_pressed.bind()
+	"pressed", switch_tab.bind("menu")
 	)
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = false
+	
+	switch_tab("menu")
+	
 	for child in $'../UI'.get_children():
 		child.visible = false
 
-func _on_settings_pressed() -> void:
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = true
-		
-	for child in $CanvasLayer/main_menu.get_children():
-		child.visible = false
+
+func switch_tab(tab_name):
+	$CanvasLayer/settings.visible = (tab_name == "settings")
+	$CanvasLayer/main_menu.visible = (tab_name == "menu")
+
 
 func _on_start_pressed() -> void:
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = false
-		
-	for child in $CanvasLayer/main_menu.get_children():
-		child.visible = false
-		
-	for child in $'../UI'.get_children():
-		child.visible = true
-		
-	$CanvasLayer/ColorRect.visible = false
-	$CanvasLayer/Sprite2D.visible = false
-	$CanvasLayer/main_menu/start.text = "Continue"
-	self.get_parent().add_child(load('res://UI/escape_menu.tscn').instantiate())
-	self.queue_free()
+	switch_tab(null)
+	
+	$'../UI'.visible = true
+	
+	get_parent().add_child(load('res://UI/escape_menu.tscn').instantiate())
+	call_deferred("queue_free")
+
 
 func _on_exit_pressed() -> void:
 	pass
-	#if OS.has_feature("HTML5"):
-		#JavaScriptBridge.eval("window.location.reload();", false)
-	#else:
-		#get_tree().quit()
-
-func _on_back_pressed() -> void:
-	for child in $CanvasLayer/settings.get_children():
-		child.visible = false
-		
-	for child in $CanvasLayer/main_menu.get_children():
-		child.visible = true
 
 
 func _on_volume_value_changed(value: float) -> void:
 	if not muted:
-		$AudioStreamPlayer.volume_db = value/10-20
+		$MainMenu.volume_db = value/10-20
+
 
 func _on_full_screen_toggled(toggled_on: bool) -> void:
 	if toggled_on:
