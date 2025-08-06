@@ -8,6 +8,11 @@ var selected_wagon: Node
 var need_builder: Label = Label.new()
 var need_wood: Label = Label.new()
 
+var hover_time := 0.0
+var hover_height := 4.0  
+var hover_speed := 3.0   
+
+
 func _ready() -> void:
 	need_builder.add_theme_color_override("font_color", Color.RED)
 	need_builder.add_theme_font_size_override("font_size", 18)
@@ -36,18 +41,22 @@ func _input(event):
 				Globals.placing = false
 
 	# Handle selecting a wagon to move
-	elif event.is_action_pressed("move"):
+	elif event.is_action_pressed("place"): # move
 		if isValidCell(get_global_mouse_position()):
 			return
 		var grid_index = Globals.getIndexFromGlobal(get_global_mouse_position())
 		var grid_value = Globals.GRID[grid_index.x][grid_index.y]
 
-		if grid_value.name.contains("wagon"):
-			if grid_value.mouse_over:
-				selected_wagon = grid_value
+		if grid_value != null and grid_value.name.contains("wagon") and grid_value.mouse_over:
+			# Reset previous selected wagon's color
+			if selected_wagon != null:
+				selected_wagon.modulate = Color(1, 1, 1, 1)
 
-	# Handle moving a selected wagon
-	if event.is_action_pressed("place") and selected_wagon != null:
+			# Select new wagon and darken it
+			selected_wagon = grid_value
+			#selected_wagon.modulate = Color(0.7, 0.7, 0.7, 1.0) 
+
+	if event.is_action_pressed("move") and selected_wagon != null:
 		if !isValidCell(get_global_mouse_position()):
 			return
 
@@ -57,8 +66,13 @@ func _input(event):
 		selected_wagon.position = Globals.getGridPosition(get_global_mouse_position())
 		var new_index = Globals.getIndexFromGlobal(selected_wagon.position)
 		Globals.GRID[new_index.x][new_index.y] = selected_wagon
-
+		
+		# Clear selection visual
+		selected_wagon.modulate = Color(1, 1, 1, 1)
+		selected_wagon.position = Globals.getGridPosition(selected_wagon.position)
 		selected_wagon = null
+		hover_time = 0.0
+
 
 # Snapped grid origin
 func snap_to_grid(target: Vector2) -> Vector2:
@@ -164,6 +178,14 @@ func _physics_process(delta: float) -> void:
 			need_wood.global_position = get_global_mouse_position()
 			need_wood.global_position.y -= 80
 			need_wood.global_position.x -= 100
+			
+	# Make selected wagon hover
+	if selected_wagon != null:
+		hover_time += delta
+		var bob_offset = sin(hover_time * hover_speed) * hover_height
+		var original_pos = Globals.getGridPosition(selected_wagon.position)
+		selected_wagon.position.y = original_pos.y + bob_offset
+
 
 func place_wagon():
 	var grid_index = Globals.getIndexFromGlobal($BaseTileWhite.global_position)

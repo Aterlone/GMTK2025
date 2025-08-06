@@ -143,7 +143,7 @@ func hurt():
 	if health <= 0:
 		if wagon_type == Globals.wagon_types.BUILDER:
 			Globals.MAIN.end_run()
-			queue_free()
+		queue_free()
 
 
 ##

@@ -21,7 +21,6 @@ texture = ExtResource("1_iaef4")
 hframes = 3
 
 [node name="main_menu" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -75,6 +74,7 @@ size_flags_vertical = 4
 text = "Exit"
 
 [node name="settings" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 
@@ -136,6 +136,7 @@ offset_bottom = 198.0
 stream = ExtResource("3_5whv5")
 volume_db = -20.0
 autoplay = true
+parameters/looping = true
 
 [connection signal="toggled" from="CanvasLayer/settings/FullScreen" to="." method="_on_full_screen_toggled"]
 [connection signal="value_changed" from="CanvasLayer/settings/Volume" to="." method="_on_volume_value_changed"]

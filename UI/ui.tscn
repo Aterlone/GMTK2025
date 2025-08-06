@@ -52,6 +52,7 @@ icon = ExtResource("4_c7tqi")
 expand_icon = true
 
 [node name="WagonBuilder" type="Button" parent="Main/Buttons"]
+visible = false
 layout_mode = 0
 offset_left = 584.0
 offset_top = 170.0
@@ -67,6 +68,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="builder_cost" type="Label" parent="Main/HUD"]
+visible = false
 offset_left = 578.0
 offset_top = 214.0
 offset_right = 643.0
@@ -90,6 +92,7 @@ offset_bottom = 354.0
 text = "Wood: 400"
 
 [node name="builder" type="Label" parent="Main/HUD"]
+visible = false
 layout_mode = 0
 offset_left = 586.0
 offset_top = 202.0
@@ -171,15 +174,6 @@ offset_bottom = 56.0
 theme_override_font_sizes/font_size = 21
 text = "Mine all Gold!"
 
-[node name="Button" type="Button" parent="Main"]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 320.0
-offset_right = 98.0
-offset_bottom = 351.0
-text = "Next Level"
-
 [node name="EndRun" type="Control" parent="Main"]
 visible = false
 anchors_preset = 0
@@ -187,14 +181,12 @@ offset_right = 640.0
 offset_bottom = 360.0
 
 [node name="ColorRect" type="ColorRect" parent="Main/EndRun"]
-visible = false
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 1)
 
 [node name="Restart" type="Button" parent="Main/EndRun"]
-visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 280.0
@@ -203,7 +195,6 @@ offset_bottom = 320.0
 text = "restart"
 
 [node name="Base" type="Label" parent="Main/EndRun"]
-visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 32.0
@@ -213,7 +204,6 @@ text = "RUN ENDED!!!!
 Your wagons were overrun!"
 
 [node name="Stats" type="Label" parent="Main/EndRun"]
-visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 128.0

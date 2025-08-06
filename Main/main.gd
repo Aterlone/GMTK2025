@@ -9,7 +9,6 @@ var clock = 0
 var trees_being_mined = []
 var in_game = false
 
-
 signal run_reset
 
 
@@ -22,9 +21,7 @@ func end_run():
 
 func create_level():
 	Globals.resetStats()
-	
 	var wagons = []
-	
 	
 	for level in $LevelContainer.get_children():
 		for nodes in level.get_children():
@@ -42,7 +39,10 @@ func create_level():
 	SPAWNER = level_entity.get_node("Spawner")
 	ENTITIES = level_entity.get_node("Entities")
 	Globals.createGrid()
+	Globals.GRID[10][5] = load("res://Wagons/wagon.tscn").instantiate()
+	Globals.GRID[10][5].wagon_type = Globals.wagon_types.BUILDER
 	SPAWNER.spawnEntities()
+	
 	
 	for wagon in wagons:
 		ENTITIES.add_child(wagon)
@@ -82,8 +82,12 @@ func has_gold():
 				if "resource_type" in item:
 					if item.resource_type == Globals.resource_types.GOLD:
 						count += 1
-	
-	$UI/Main/HUD/Objective2.text = "- MINE ALL GOLD! (" + str(count) + " more)"
+	if Globals.level_number <= 1:
+		$UI/Main/HUD/Objective2.text = "- MINE ALL GOLD! (" + str(count) + " more)"
+	else:
+		$UI/Main/HUD/Objective.text = "Level " + str(Globals.level_number)
+		$UI/Main/HUD/Objective2.text = "Gold to mine: " + str(count)
+
 	if count:
 		return true
 		

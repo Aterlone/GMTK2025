@@ -13,6 +13,7 @@ config_version=5
 config/name="GMTK2025"
 run/main_scene="uid://cuwkyvbibg2oh"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/image="uid://b3pwwft7n53uu"
 config/icon="res://icon.svg"
 
 [autoload]

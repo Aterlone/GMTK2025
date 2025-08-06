@@ -77,7 +77,7 @@ var current_level = levels.GOBLINS
 var is_day = false
 
 var level_number = 0
-
+var first = 0
 
 func resetStats():
 	stats = {
@@ -90,11 +90,6 @@ func resetStats():
 
 # Create a grid which can have tiles placed on it.
 func createGrid():
-	resource_quantities = {
-		resource_types.WOOD : 300,
-		resource_types.GOLD : 0
-	}
-	
 	GRID = []
 	const CENTER_MIN = 6
 	const CENTER_MAX = 14
@@ -102,6 +97,8 @@ func createGrid():
 	for x in range(Globals.GRID_WIDTH):
 		var column = []
 		for y in range(Globals.GRID_HEIGHT):
+			if x == 20 and y >= 5 and y <= 12:
+				break
 			column.append(null)
 			var bonus = abs((y * x) - 180) / 180.0
 			var threshold = 1.6 - bonus

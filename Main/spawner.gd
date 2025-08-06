@@ -1,6 +1,5 @@
 extends Node
 
-
 var entity_counter = 0
 var entity_files = {
 	"tree" : load("res://tree.tscn"),
@@ -17,10 +16,16 @@ func _ready() -> void:
 func spawnEntities():
 	for x in range(Globals.GRID.size()):
 		for y in range(Globals.GRID[x].size()):
+			if x == 10 and y == 5:
+				continue
 			var item = Globals.GRID[x][y]
 			if item != null:
-				if item in "treegold":
-					spawnEntity(item, Vector2(x, y))
+				if typeof(item) == TYPE_STRING:
+					if item in "treegold":
+						spawnEntity(item, Vector2(x, y))
+	if not Globals.first:
+		spawnEntity('wagon', Vector2(10, 5), Globals.wagon_types.BUILDER)
+		Globals.first = 1
 
 
 func tryBuyWagon(entity_type):
@@ -35,21 +40,20 @@ func tryBuyWagon(entity_type):
 # For entites such as trees it will spawn a NONE wagon type.
 func spawnEntity(entity_key: String, grid_position: Vector2, type: Globals.wagon_types = Globals.wagon_types.NONE) -> void:
 	var entity;
-	
 	# if it's a wagon
 	if type != Globals.wagon_types.NONE:
+		#if type != Globals.wagon_types.BUILDER:
+			#if !Globals.has_builder:
+				#return
+	
 		if type != Globals.wagon_types.BUILDER:
-			if !Globals.has_builder:
+			var bought = tryBuyWagon(Globals.entity_to_place)
+			if !bought:
 				return
-		
-		var bought = tryBuyWagon(Globals.entity_to_place)
-		if !bought:
-			return
 		
 		entity = entity_files[entity_key].instantiate()
 		entity.name = entity_key + str(entity_counter) + str(grid_position)
 		entity_counter += 1
-		
 		entity.set_type(type)
 		
 	else:
@@ -78,7 +82,9 @@ func spawnEnemy():
 	var screenWidth = 640
 	var screenHeight = 360
 	
-	for x in range(0, Globals.level_number):
+	var max = Globals.level_number-1
+	max = 1 if not max else max
+	for x in range(0, min(5, max)):
 		var random_position = Vector2.ZERO
 		random_position -= 32 * Vector2(1,1)
 		random_position.x += randi_range(0,1) * screenWidth + 32
@@ -88,6 +94,10 @@ func spawnEnemy():
 		var enemy_entity = load("res://Enemies/grunt.tscn").instantiate()
 		enemy_entity.global_position = random_position
 		Globals.MAIN.ENTITIES.call_deferred("add_child", enemy_entity)
-	
-	
-	
+
+
+func _process(delta: float) -> void:
+	if Globals.current_level == 1:
+		$EnemyDelay.wait_time = 4
+	else:
+		$EnemyDelay.wait_time = 1

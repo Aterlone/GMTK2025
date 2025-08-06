@@ -20,22 +20,31 @@ func _ready() -> void:
 		"pressed", set_placed_wagon.bind(Globals.wagon_types.BUILDER)
 		)
 		
-	$Main/Button.connect(
-		"pressed", Globals.MAIN.create_level
-		)
+	#$Main/Button.connect(
+		#"pressed", Globals.MAIN.create_level
+		#)
 		
-	$Main/Button.connect(
-	"pressed", hide_end_run
-	)
-	hide_end_run()
+	#$Main/Button.connect(
+	#"pressed", hide_end_run
+	#)
+	#hide_end_run()
 	$Main/EndRun/Restart.connect("pressed", restart)
 
 
 func restart():
-	Globals.MAIN.create_level()
-	$Main/EndRun.visible =false
+	Globals.level_number = 0
 	Globals.current_level = Globals.levels.GOBLINS
-	Globals.level_number = 1
+	Globals.resource_quantities = {
+		Globals.resource_types.WOOD : 300,
+		Globals.resource_types.GOLD : 0
+	}
+	Globals.first = 0
+
+	$Main/HUD/Objective.text = "Level 1"
+	
+	Globals.MAIN.create_level()
+	$'../EscapeMenu'.level_change()
+	$Main/EndRun.visible = false
 
 
 func hide_end_run():
@@ -65,14 +74,14 @@ func _physics_process(delta: float) -> void:
 	
 	visible = Globals.MAIN.in_game or $Main/EndRun.visible
 	
-	
 	var resources = Globals.resource_quantities
 	$Main/HUD/Wood.text = "x" + str(resources[Globals.resource_types.WOOD]) + ""
 	$Main/HUD/Gold.text = "x" + str(resources[Globals.resource_types.GOLD]) + ""
 	if Globals.has_builder:
 		$Main/HUD/Builders.text = ""
 	else:
-		$Main/HUD/Builders.text = "No Builders!?"
+		pass
+		#$Main/HUD/Builders.text = "No Builders!?"
 
 func set_placed_wagon(wagon_type):
 	Globals.placing = !Globals.placing

@@ -3,8 +3,7 @@ extends Sprite2D
 @export var life: int = 15
 
 
-var resource_type = Globals.resource_types.WOOD
-
+var resource_type = Globals.resource_types.WOOD	
 
 func set_type(entity_key):
 	match entity_key:
@@ -18,6 +17,7 @@ func set_type(entity_key):
 					frame = 1
 		"gold":
 			resource_type = Globals.resource_types.GOLD
+			life = 50
 			frame = 2
 
 

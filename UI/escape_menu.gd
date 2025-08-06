@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 		_show_overlay()
 		_pause_music()
 		$music/main_theme.playing = true
-		
+
 		play = false
 
 func _on_back_pressed() -> void:
@@ -54,6 +54,12 @@ func _process(_delta: float) -> void:
 
 	if after_charge_set and play:
 		after_charge()
+	
+	if $'../UI/Main/EndRun'.visible:
+		for child in $music.get_children():
+			child.stop()
+
+	
 
 # Music Phase Functions
 
@@ -80,9 +86,9 @@ func after_charge() -> bool:
 	return true
 
 func level_change() -> void:
-	$music/greedy_bastard.playing = false
+	$music/greedy_bastard.stop()
 	$music/greedy_bastard.stream.loop = false
-	$music/danger_ahead.playing = false
+	$music/greedy_bastard.stop()
 	$music/danger_ahead.stream.loop = false
 
 	#$music/traveller.playing = true
